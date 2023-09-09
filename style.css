@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Belbo';
+    src: url(fonts/Belbo-Regular.woff);
+}
+@font-face {
+    font-family: 'Belbo-bold';
+    src: url(fonts/Belbo-Bold.woff);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Belbo;
+}
