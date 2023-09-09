@@ -6,6 +6,10 @@
     font-family: 'Belbo-bold';
     src: url(fonts/Belbo-Bold.woff);
 }
+@font-face {
+    font-family: 'Belbo-thin';
+    src: url(fonts/Belbo-Hair.woff);
+}
 
 * {
     box-sizing: border-box;
@@ -71,12 +75,31 @@
 }
 
 .wrapper nav .workspaces .nav-el .lower {
-    border-left: 3px solid #8000AB;
+    border-left: 3px solid black;
     position: relative;
     padding-top: 10px;
-    bottom: 5px;
+    bottom: 6px;
     margin-left: 10px;
 }
+.wrapper nav .workspaces .nav-el .h8000AB {
+    border-left: 3px solid #8000AB;
+}
+.wrapper nav .workspaces .nav-el .h674EE3 {
+    border-left: 3px solid #674EE3;
+}
+.wrapper nav .workspaces .nav-el .F8B33C {
+    border-left: 3px solid #F8B33C;
+}
+.wrapper nav .workspaces .nav-el .h007CFF {
+    border-left: 3px solid #007CFF;
+}
+.wrapper nav .workspaces .nav-el .h20A475 {
+    border-left: 3px solid #20A475;
+}
+.wrapper nav .workspaces .nav-el .hFF9392 {
+    border-left: 3px solid #FF9392;
+}
+
 .wrapper nav .workspaces .nav-el .lower .lower-el {
     align-items: center;
     display: flex;
@@ -87,4 +110,25 @@
 .wrapper nav .workspaces .nav-el .lower .lower-el .topics {
     font-size: 18px;
     color: #666666;
+}
+
+.wrapper nav .create {
+    position: absolute;
+    bottom: 20px;
+    background-color: rgb(225, 236, 254);
+    width: 280px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #007CFF;
+    border-radius: 20px;
+}
+
+.wrapper nav .create .plus {
+    font-family: Belbo-Thin;
+    font-size: 60px;
+}
+.wrapper nav .create .new-space {
+    font-size: 20px;
 }
