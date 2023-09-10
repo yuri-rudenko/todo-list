@@ -10,6 +10,10 @@
     font-family: 'Belbo-thin';
     src: url(fonts/Belbo-Hair.woff);
 }
+@font-face {
+    font-family: 'Belbo-light';
+    src: url(fonts/Belbo-Light.woff);
+}
 
 * {
     box-sizing: border-box;
@@ -24,6 +28,7 @@
 
 .wrapper nav {
     width: 350px;
+    margin-right: 10px;
 }
 .wrapper nav .search {
     display: flex;
@@ -130,5 +135,147 @@
     font-size: 60px;
 }
 .wrapper nav .create .new-space {
+    font-size: 20px;
+}
+
+.wrapper main {
+    border-left: #999999 2px solid;
+}
+.wrapper main .top {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    background-image: linear-gradient(90deg, #000000 6%, #ff00fc 60%, #1103ec 80%, #000000 100%);
+}
+.wrapper main .top * {
+    backdrop-filter: blur(200px);
+    
+}
+.wrapper main .top .work-info {
+    padding: 40px 10px 0px 30px;
+}
+.wrapper main .top .work-info {
+    display: flex;
+    justify-content: space-around;
+}
+.wrapper main .top .work-info .description {
+    margin-right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.wrapper main .top .work-info .description .name {
+    display: flex;
+    align-items: center;
+}
+.wrapper main .top .work-info .description .name img {
+    margin-right: 10px;
+    height: 24px;
+    width: 24px;
+}
+.wrapper main .top .work-info .description .name p {
+    font-size: 24px;
+    font-family: Belbo-bold;
+    color: white;
+}
+.wrapper main .top .work-info .description .work-description p {
+    font-size: 16px;
+    color: #888888;
+}
+.wrapper main .top .work-info .details {
+    padding-top: 20px;
+}
+.wrapper main .top .work-info .details .assign {
+    display: flex;
+    align-items: center;
+}
+.wrapper main .top .work-info .details .assign .assign-text {
+    margin-right: 5px;
+    font-size: 18px;
+    color: #999999;
+}
+.wrapper main .top .work-info .details .assign .images {
+    display: flex;
+}
+.wrapper main .top .work-info .details .assign .images .images-container {
+    border-right: 1px solid #5a4ff1;
+    display: flex;
+    margin: 0px 5px 0px 0px;
+    padding-right: 5px;
+}
+.wrapper main .top .work-info .details .assign .images .images-container .profile-picture {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.wrapper main .top .work-info .details .assign .add {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(100%, 100%, 100%, 0.05);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.wrapper main .top .work-info .details .assign .add p {
+    backdrop-filter: none;
+    color: #4033f1;
+    font-family: Belbo-light;
+    font-size: 40px;
+}
+
+.wrapper main .top .work-info .details .date {
+    margin-top: 10px;
+    display: flex;
+    align-items:end;
+    margin-top: 30px;
+}
+.wrapper main .top .work-info .details .date p {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #999999;
+}
+.wrapper main .top .work-info .details .date .date-el {
+    color: white;
+    font-family: belbo-light;
+    font-size: 16px;
+}
+
+.wrapper main .top .work-info .details .tags {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+.wrapper main .top .work-info .details .tags p {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #999999;
+}
+.wrapper main .top .work-info .details .tags .tags-el {
+    display: flex;
+}
+.wrapper main .top .work-info .details .tags .tags-el .tag {
+    width: 100%;
+    color: white;
+    font-family: belbo-light;
+    display: flex;
+    align-items: center;
+    background-color: rgba(100%, 100%, 100%, 0.1);
+    margin-right: 5px;
+    padding: 15px 10px;
+    border-radius: 20px;
+    white-space: nowrap
+}
+
+
+.wrapper main .top .options {
+    padding: 30px 0 10px 30px;
+    display: flex;
+}
+.wrapper main .top .options .options-el {
+    margin-right: 60px;
+    color: #999999;
     font-size: 20px;
 }
