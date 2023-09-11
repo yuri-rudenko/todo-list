@@ -44,7 +44,7 @@
     height: 24px;
 }
 .wrapper nav .search .search-workspace {
-    width: 300px;
+    max-width: 90%;
     height: 30px;
     font-size: 24px;
     margin-left: 10px;
