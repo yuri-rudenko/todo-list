@@ -56,7 +56,7 @@
     flex-direction: column;
 }
 .wrapper nav .workspaces .nav-el {
-
+    margin-bottom: 10px;
 }
 .wrapper nav .workspaces .nav-el .upper  {
     align-items: center;
@@ -89,6 +89,7 @@
     padding-top: 10px;
     bottom: 6px;
     margin-left: 10px;
+    display: none;
 }
 .wrapper nav .workspaces .nav-el .h8000AB {
     border-left: 3px solid #8000AB;
