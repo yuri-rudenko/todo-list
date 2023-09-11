@@ -82,31 +82,34 @@
     width: 24px;
     height: 24px;
 }
-
 .wrapper nav .workspaces .nav-el .lower {
-    border-left: 3px solid black;
     position: relative;
     padding-top: 10px;
     bottom: 6px;
     margin-left: 10px;
+    overflow: hidden;
+}
+.lower {
+    max-height: 0;
+    border-left: none;
 }
 .wrapper nav .workspaces .nav-el .h8000AB {
-    border-left: 3px solid #8000AB;
+    border-left-color: #8000AB;
 }
 .wrapper nav .workspaces .nav-el .h674EE3 {
-    border-left: 3px solid #674EE3;
+    border-left-color: #674EE3;
 }
 .wrapper nav .workspaces .nav-el .F8B33C {
-    border-left: 3px solid #F8B33C;
+    border-left-color: #F8B33C;
 }
 .wrapper nav .workspaces .nav-el .h007CFF {
-    border-left: 3px solid #007CFF;
+    border-left-color: #007CFF;
 }
 .wrapper nav .workspaces .nav-el .h20A475 {
-    border-left: 3px solid #20A475;
+    border-left-color: #20A475;
 }
 .wrapper nav .workspaces .nav-el .hFF9392 {
-    border-left: 3px solid #FF9392;
+    border-left-color: #FF9392;
 }
 
 .wrapper nav .workspaces .nav-el .lower .lower-el {
