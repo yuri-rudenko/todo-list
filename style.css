@@ -154,6 +154,13 @@
     background-size: cover;
     background-position: center;
 }
+
+.wrapper main .top .burger img {
+    height: 40px;
+    margin: 20px 0 0 20px;
+    display: none;
+}
+
 .wrapper main .top .work-info {
     padding: 40px 10px 0px 30px;
 }
@@ -192,6 +199,7 @@
     display: flex;
     align-items: center;
 }
+
 .wrapper main .top .work-info .details .assign .assign-text {
     margin-right: 5px;
     font-size: 18px;
@@ -309,10 +317,10 @@ main .todo-list {
     margin-top: 40px;
     margin-left: 30px;
     display: flex;
+    flex-wrap: wrap;
 }
 main .todo-list .board {
     margin-right: 30px;
-    
 }
 main .todo-list .board .naming {
     display: flex;
@@ -377,4 +385,20 @@ main .todo-list .board .tasks .task .task-bot .day {
 }
 main .todo-list .board .tasks .task .task-bot .time {
     color: #666666;
+}
+
+main .todo-list .add-board .adder {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 10px;
+    justify-content: space-between;
+    font-size: 22px;
+    width: 250px;
+    border-radius: 10px;
+    font-family: belbo-semibold;
+}
+main .todo-list .add-board .adder .plus {
+    font-family: belbo-light;
+    font-size: 40px;
 }
