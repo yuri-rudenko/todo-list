@@ -33,6 +33,9 @@
 .wrapper nav {
     width: 300px;
     margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .wrapper nav .search {
     display: flex;
@@ -128,8 +131,6 @@
 }
 
 .wrapper nav .create {
-    position: absolute;
-    bottom: 20px;
     background-color: rgb(225, 236, 254);
     width: 280px;
     height: 60px;
@@ -138,6 +139,7 @@
     align-items: center;
     color: #007CFF;
     border-radius: 20px;
+    margin-bottom: 15px;
 }
 
 .wrapper nav .create .plus {
