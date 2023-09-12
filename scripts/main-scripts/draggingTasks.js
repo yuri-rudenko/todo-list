@@ -1,4 +1,4 @@
-export function druggingTasks(draggables, containers) {
+export function draggingTasks(draggables, containers) {
     for(let el of draggables) {
         el.addEventListener('dragstart', () => {
             el.classList.add('dragging')

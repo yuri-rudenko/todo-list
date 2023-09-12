@@ -1,6 +1,7 @@
 import { changeNavElState } from "./scripts/nav-scripts/changeNavElState.js"
 import { makeNewSpaceVisible } from "./scripts/nav-scripts/newSpaceVisibility.js"
-import { druggingTasks } from "./scripts/main-scripts/druggingTasks.js"
+import { draggingTasks } from "./scripts/main-scripts/draggingTasks.js"
+import { changeDraggingState } from "./scripts/main-scripts/changeDragginState.js"
 
 let navEls = document.querySelectorAll('.nav-el')
 let createSpace = document.querySelector('.create')
@@ -15,7 +16,18 @@ for(let el of navEls) {
 createSpace.addEventListener('click', makeNewSpaceVisible)
 
 
-let draggables = document.querySelectorAll('.task')
+let tasks = document.querySelectorAll('.task')
 let containers = document.querySelectorAll('.tasks')
 
-druggingTasks(draggables, containers)
+draggingTasks(tasks, containers)
+
+let locks = document.querySelectorAll('.lock')
+
+for(let task of tasks) {
+    task.addEventListener('click', (ev) => {
+        if(ev.target.classList.contains('lock')) {
+            console.log(1)
+            changeDraggingState(task)
+        }
+    })
+}
