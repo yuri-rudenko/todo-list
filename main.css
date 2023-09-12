@@ -329,6 +329,7 @@ main .todo-list {
 }
 main .todo-list .board {
     margin-right: 30px;
+    min-width: 250px;
 }
 main .todo-list .board .naming {
     display: flex;
@@ -353,7 +354,6 @@ main .todo-list .board .adder {
     justify-content: space-between;
     font-size: 20px;
     padding: 0px 20px;
-    width: 250px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -361,12 +361,15 @@ main .todo-list .board .adder .plus {
     font-family: belbo-light;
     font-size: 40px;
 }
+main .todo-list .board .tasks {
+    min-height: 100px;
+    padding-bottom: 100px;
+}
 main .todo-list .board .tasks .task {
     margin-bottom: 20px;
     background-color: #f5f5f5;
     font-size: 20px;
     padding: 20px;
-    width: 250px;
     border-radius: 10px;
 }
 main .todo-list .board .tasks .task .task-top {
