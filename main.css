@@ -218,6 +218,7 @@ img {
     margin-right: 5px;
     font-size: 18px;
     color: #999999;
+    
 }
 .wrapper main .top .work-info .details .assign .images {
     display: flex;
@@ -226,13 +227,13 @@ img {
     border-right: 1px solid #5a4ff1;
     display: flex;
     margin: 0px 5px 0px 0px;
-    padding-right: 5px;
 }
 .wrapper main .top .work-info .details .assign .images .images-container .profile-picture {
     height: 50px;
     width: 50px;
     border-radius: 50%;
     border: 2px solid white;
+    position: relative;
 }
 .wrapper main .top .work-info .details .assign .add {
     width: 50px;
@@ -242,6 +243,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     
 }
 .wrapper main .top .work-info .details .assign .add p {

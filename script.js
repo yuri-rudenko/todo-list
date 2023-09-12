@@ -2,6 +2,7 @@ import { changeNavElState } from "./scripts/nav-scripts/changeNavElState.js"
 import { makeNewSpaceVisible } from "./scripts/nav-scripts/newSpaceVisibility.js"
 import { draggingTasks } from "./scripts/main-scripts/draggingTasks.js"
 import { changeDraggingState } from "./scripts/main-scripts/changeDragginState.js"
+import { setProfilePicturePostion } from "./scripts/main-scripts/setProfilePicturePostion.js"
 
 
 const main = {
@@ -11,12 +12,13 @@ const main = {
 }
 
 class Workspace {
-    constructor(name, subthemes) {
+    constructor(name, subthemes, boards) {
         this.name = name
         this.subthemes = subthemes
-        this.description = "New workspace"
+        this.description = "New workspace. You can change the description in the settings tab"
         this.assigned = []
-        this.boards = []
+        this.boards = boards
+        this.tags = []
     }
 }
 
@@ -27,21 +29,26 @@ class Board {
     }
 }
 
-class Tusk {
-    constructor(name, description, day, time) {
+class Task {
+    constructor(name, description, day, timeBegin, timeEnd) {
         this.name = name
         this.description = description
         this.day = day
-        this.time = time
+        this.timeBegin = timeBegin
+        this.timeEnd = timeEnd
     }
 }
 
+let basicBoards = [new Board('Todos'), new Board('In Progress'),new Board('Is Done')]
 
-let tuskArr = [new Tusk('Tusk1', "test tusk", 'Tommotow', "11 PM - 2 AM"), new Tusk('Tusk2', "test tusk2", '12 July', "3 AM - 8 AM")]
-let first = new Workspace('Chemistry', ['H20', "CO2", "One Piece"])
-let todos = new Board('Todods')
-todos.tasks.push([...tuskArr])
-first.boards.push(todos)
+for(let board of basicBoards) {
+    let testTask = new Task('First tusk', 'My first tusk', 'Today', '12:00', '15:00')
+    board.tasks.push(testTask)
+    console.log(board.tasks)
+}
+
+let first = new Workspace('First workspace', ['Testing', "Showcase"], basicBoards)
+
 console.log(first)
 
 
@@ -76,3 +83,5 @@ for(let task of tasks) {
         }
     })
 }
+
+setProfilePicturePostion(document.querySelectorAll('.profile-picture'))
