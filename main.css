@@ -22,6 +22,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
     font-family: Belbo;
 }
 
@@ -349,7 +350,7 @@ main .todo-list .board .naming .sphere {
     width: 18px;
     border-radius: 50%;
 }
-main .todo-list .board .naming .name {
+main .todo-list .board .naming .board-name {
     font-size: 24px;
     font-family: belbo-bold;
     margin-left: 10px;
@@ -399,23 +400,38 @@ main .todo-list .board .tasks .task .task-top {
 }
 main .todo-list .board .tasks .task .task-top .task-name {
     font-family: belbo-semibold;
+    background-color: #f5f5f5;
+    border: none;
     font-size: 22px;
+    max-width: 240px;
     margin-bottom: 10px;
 }
 main .todo-list .board .tasks .task .task-top .task-description {
     font-size: 15px;
     color: #888888;
+    background-color: #f5f5f5;
+    border: none;
+    max-width: 240px;
 }
 main .todo-list .board .tasks .task .task-bot {
     display: flex;
     font-size: 15px;
 }
 main .todo-list .board .tasks .task .task-bot .day {
+    max-width: 150px;
+    font-size: 15px;
     margin-right: 7px;
     font-family: belbo-semibold;
+    background-color: #f5f5f5;
+    border: none;
 }
 main .todo-list .board .tasks .task .task-bot .time {
+    font-size: 15px;
     color: #666666;
+    background-color: #f5f5f5;
+    border: none;
+    max-width: 200px;
+    min-width: 30px;
 }
 
 main .todo-list .add-board .adder {

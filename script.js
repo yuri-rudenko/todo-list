@@ -80,7 +80,7 @@ class Board {
         let naming = document.createElement('div')
         naming.classList.add('naming')
         naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.color}"></div>`)
-        naming.insertAdjacentHTML('beforeend', `<p class="name">${this.name}</p>`)
+        naming.insertAdjacentHTML('beforeend', `<p class="board-name">${this.name}</p>`)
         
         let adder = document.createElement('div')
         adder.classList.add('adder', 'task-creator')
@@ -180,11 +180,120 @@ todolist.addEventListener('click', (ev) => {
     if(ev.target.classList.contains('lock')) {
         changeDraggingState(ev.target.parentElement)
     }
+
+    if(ev.target.classList.contains('task-name')) {
+        if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
+            console.log(ev.target.tagName)
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.classList.add('task-name')
+            input.innerHTML = ev.target.innerHTML
+    
+            let inputStyle = getComputedStyle(ev.target)
+            input.style.width = `${inputStyle.width}`
+            input.value = `${ev.target.innerHTML}`
+    
+            ev.target.classList.add('display')
+
+            ev.target.before(input)
+
+            input.focus()
+    
+            input.addEventListener('focusout', () => {
+                let newVal = input.value
+                input.remove()
+                if(newVal) ev.target.innerHTML = newVal
+                else ev.target.innerHTML = "Enter name"
+                ev.target.classList.remove('display')
+            })
+        }  
+    }
+    if(ev.target.classList.contains('task-description')) {
+        if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
+            console.log(ev.target.tagName)
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.classList.add('task-description')
+            input.innerHTML = ev.target.innerHTML
+    
+            let inputStyle = getComputedStyle(ev.target)
+            input.style.width = `${inputStyle.width}`
+            input.value = `${ev.target.innerHTML}`
+    
+            ev.target.classList.add('display')
+
+            ev.target.before(input)
+
+            input.focus()
+    
+            input.addEventListener('focusout', () => {
+                let newVal = input.value
+                input.remove()
+                if(newVal) ev.target.innerHTML = newVal
+                else ev.target.innerHTML = "Enter description"
+                ev.target.classList.remove('display')
+            })
+        }  
+    }
+    if(ev.target.classList.contains('day')) {
+        if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
+            console.log(ev.target.tagName)
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.classList.add('day')
+            input.innerHTML = ev.target.innerHTML
+    
+            let inputStyle = getComputedStyle(ev.target)
+            input.style.width = `${parseInt(inputStyle.width)+50}px`
+            input.value = `${ev.target.innerHTML}`
+    
+            ev.target.classList.add('display')
+
+            ev.target.before(input)
+
+            input.focus()
+    
+            input.addEventListener('focusout', () => {
+                let newVal = input.value
+                input.remove()
+                if(newVal) ev.target.innerHTML = newVal
+                else ev.target.innerHTML = "Enter day"
+                ev.target.classList.remove('display')
+            })
+        }  
+    }
+    if(ev.target.classList.contains('time')) {
+        if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
+            console.log(ev.target.tagName)
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.classList.add('time')
+            input.innerHTML = ev.target.innerHTML
+    
+            let inputStyle = getComputedStyle(ev.target)
+            input.style.width = `${parseInt(inputStyle.width)+50}px`
+            input.value = `${ev.target.innerHTML}`
+    
+            ev.target.classList.add('display')
+
+            ev.target.before(input)
+
+            input.focus()
+    
+            input.addEventListener('focusout', () => {
+                let newVal = input.value
+                input.remove()
+                if(newVal) ev.target.innerHTML = newVal
+                else ev.target.innerHTML = "Enter time"
+                ev.target.classList.remove('display')
+            })
+        }  
+    }
 })
+
 todolist.addEventListener('dblclick', (ev) => {
     if(ev.target.classList.contains('lock')) {
         let locks = document.querySelectorAll('.lock')
-        console.log(ev.target.src)
         if(ev.target.classList.contains('closed')) {
             for(let lock of locks) {
                 lock.parentElement.draggable = true
@@ -199,6 +308,34 @@ todolist.addEventListener('dblclick', (ev) => {
             }
         }
     }
+    if(ev.target.classList.contains('board-name')) {
+        if(ev.target.tagName != 'INPUT') {
+            console.log(ev.target.tagName)
+            let input = document.createElement('input')
+            input.type = 'text'
+            input.classList.add('board-name')
+            input.innerHTML = ev.target.innerHTML
+    
+            let inputStyle = getComputedStyle(ev.target)
+            input.style.width = `${parseInt(inputStyle.width)+50}px`
+            input.value = `${ev.target.innerHTML}`
+    
+            ev.target.classList.add('display')
+
+            ev.target.before(input)
+
+            input.focus()
+    
+            input.addEventListener('focusout', () => {
+                let newVal = input.value
+                input.remove()
+                if(newVal) ev.target.innerHTML = newVal
+                else ev.target.innerHTML = "New board"
+                ev.target.classList.remove('display')
+            })
+        }  
+    }
+
 })
 
 let submit = document.getElementsByClassName('submit-new-workspace')
