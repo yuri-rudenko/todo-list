@@ -1,4 +1,11 @@
-export function changeNavElState(nav, navEls) {
+export function changeNavElState(ev, workspace) {
+    //  nav, navEls
+    let nav = ev.target
+    let navEls = workspace.querySelectorAll('.nav-el')
+    while(!nav.classList.contains('nav-el') && !nav.classList.contains('wrapper')) {
+        nav = nav.parentElement
+    }
+    
     let lower = nav.querySelector('.lower')
     lower.classList.toggle('visible')
     nav.classList.add('current')

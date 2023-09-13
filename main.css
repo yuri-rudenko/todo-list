@@ -449,7 +449,6 @@ main .todo-list .add-board .adder .plus {
     height: 24px;
     position: relative;
     left: 212px;
-    bottom: 50px;
     background-color: #007CFF;
     border-radius: 50%;
     padding: 5px;
@@ -508,7 +507,7 @@ main .todo-list .add-board .adder .plus {
 .wrapper .pop-up-workspace .pop-up-workspace-wrapper .create-workspace .subtheme::placeholder {
     color: #a1a1a1;
 }
-.wrapper .pop-up-workspace .pop-up-workspace-wrapper .create-workspace .submit {
+.wrapper .pop-up-workspace .pop-up-workspace-wrapper .create-workspace .submit-new-workspace {
     margin-top: 20px;
     padding: 5px;
     font-size: 24px;
@@ -517,7 +516,4 @@ main .todo-list .add-board .adder .plus {
     border-radius: 5px;
     background-color: #007CFF;
     color: white;
-}
-.wrapper .pop-up-workspace .pop-up-workspace-wrapper .create-workspace .second, .third {
-    display: none;
 }

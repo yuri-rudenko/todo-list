@@ -3,6 +3,7 @@ import { makeNewSpaceVisible } from "./scripts/nav-scripts/newSpaceVisibility.js
 import { draggingTasks } from "./scripts/main-scripts/draggingTasks.js"
 import { changeDraggingState } from "./scripts/main-scripts/changeDragginState.js"
 import { setProfilePicturePostion } from "./scripts/main-scripts/setProfilePicturePostion.js"
+import { createNewWorkspace } from "./scripts/logic/createNewWorkspace.js"
 
 let colors = [
     '007CFF',
@@ -80,34 +81,29 @@ class Task {
     }
 }
 
-let basicBoards = [new Board('Todos'), new Board('In Progress'),new Board('Is Done')]
 
-for(let board of basicBoards) {
+/* for(let board of basicBoards) {
     let testTask = new Task('First tusk', 'My first tusk', 'Today', '12:00', '15:00')
     board.tasks.push(testTask)
     console.log(board.tasks)
-}
-
-let first = new Workspace('First workspace', ['Testing', "Showcase"], basicBoards, colors[colorCounter])
-
-console.log(first)
+} */
 
 
 
 
 
+let submit = document.getElementsByClassName('submit-new-workspace')
 
+submit[0].addEventListener('click', () => {
+    colorCounter = createNewWorkspace(colors, colorCounter, Board, Workspace, main)
+})
 
-
-let navEls = document.querySelectorAll('.nav-el')
+let workspace = document.querySelector('.workspaces')
 let createSpace = document.querySelector('.create')
 
-for(let el of navEls) {
-    let opener = el.querySelector('.upper')
-    opener.addEventListener('click', () => {
-        changeNavElState(el, navEls)
-    })
-}
+workspace.addEventListener('click', (ev) => {
+    changeNavElState(ev, workspace)
+}) 
 
 createSpace.addEventListener('click', makeNewSpaceVisible)
 
@@ -126,3 +122,4 @@ for(let task of tasks) {
 }
 
 setProfilePicturePostion(document.querySelectorAll('.profile-picture'))
+
