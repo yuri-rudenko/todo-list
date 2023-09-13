@@ -1,13 +1,35 @@
 export function makeNewSpaceVisible() {
+    
     let pop = document.getElementsByClassName('pop-up-workspace')
+    let subthemes = document.getElementsByClassName('subtheme')
+    let name = document.querySelector('.create-workspace .name')
+
     pop[0].classList.remove('display')
 
     let close = document.getElementsByClassName('cross-small')
     close[0].addEventListener('click', () => {
+        for(let sub of subthemes) {
+            sub.value = ''
+        }
+        name.value = ''
+        subthemes[1].classList.add('display')
+        subthemes[2].classList.add('display')
         pop[0].classList.add('display')
     })
     
-    let subthemes = document.getElementsByClassName('subtheme')
+    
+    document.addEventListener('keypress', () => {
+        if(subthemes[0].value) {
+            subthemes[1].classList.remove('display')
+        }
+        if(subthemes[1].value) {
+            subthemes[2].classList.remove('display')
+        }
+        if(name == document.activeElement) {
+            name.classList.remove('small-length')
+        }
+    })
+    
     for(let sub of subthemes) {
         sub.addEventListener('focusout', () => {
             if(sub.classList.contains('first')) {

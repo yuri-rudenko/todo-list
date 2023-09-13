@@ -1,6 +1,14 @@
 export function createNewWorkspace(colors, colorCounter, Board, Workspace, main) {
+
+    
     let subthemes = document.getElementsByClassName('subtheme')
-    let name = document.querySelector('.create-workspace .name').value
+    let name = document.querySelector('.create-workspace .name')
+
+    if(name.value.length < 1) {
+        name.classList.add('small-length')
+        return colorCounter
+    }
+
     let resSubthemes = []
     for(let sub of subthemes) {
         if(sub.value) resSubthemes.push(sub.value)
@@ -9,11 +17,18 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
     let basicBoards = [new Board('Todos'), new Board('In Progress'),new Board('Is Done')]
 
     
-    const workspace = new Workspace(name, resSubthemes, basicBoards, colors[colorCounter])
+    const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
 
     main.workspaces.push(workspace)
 
-    if(colorCounter == 6) return 0
+    for(let sub of subthemes) {
+        sub.value = ''
+        subthemes[1].classList.add('display')
+        subthemes[2].classList.add('display')
+    }
+    name.value = ''
+
+    if(colorCounter == 5) return 0
     else return colorCounter+1
     
 }

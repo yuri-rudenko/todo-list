@@ -36,3 +36,7 @@
 .task.dragging {
     opacity: .5;
 }
+
+.wrapper .pop-up-workspace .pop-up-workspace-wrapper .create-workspace .name.small-length {
+    border-color: red;
+}
