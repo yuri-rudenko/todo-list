@@ -65,19 +65,70 @@ class Workspace {
 }
 
 class Board {
-    constructor(name) {
+    constructor(name, tasks = [], color) {
         this.name = name
-        this.tasks = []
+        this.tasks = tasks
+        this.color = color
+        this.addBoard()
+    }
+
+    addBoard() {
+        let board = document.createElement('div')
+        board.classList.add('board')
+
+        let naming = document.createElement('div')
+        naming.classList.add('naming')
+        naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.color}"></div>`)
+        naming.insertAdjacentHTML('beforeend', `<p class="name">${this.name}</p>`)
+        
+        let adder = document.createElement('div')
+        adder.classList.add('adder', 'task-creator')
+        adder.insertAdjacentHTML('beforeend', `<p class="add-task task-creator">Add Task</p>`)
+        adder.insertAdjacentHTML('beforeend', `<p class="plus task-creator">+</p>`)
+
+        let tasks = document.createElement('div')
+        tasks.classList.add('tasks')
+
+        board.append(naming)
+        board.append(adder)
+        board.append(tasks)
+
+        let todolist = document.querySelector('.add-board')
+        todolist.before(board)
     }
 }
 
 class Task {
-    constructor(name, description, day, timeBegin, timeEnd) {
-        this.name = name
-        this.description = description
-        this.day = day
-        this.timeBegin = timeBegin
-        this.timeEnd = timeEnd
+    constructor(curBoard) {
+        this.name = 'Enter name'
+        this.description = 'Enter description'
+        this.day = 'Enter date'
+        this.time = 'Enter time'
+        this.parentBoard = curBoard
+        this.addTask(this.parentBoard)
+    }
+
+    addTask(board) {
+        let taskDiv = document.createElement('div')
+        taskDiv.classList.add('task')
+        taskDiv.draggable = 'false'
+        taskDiv.insertAdjacentHTML('beforeend',`<img src="icons/unlock.png" class="lock" alt="">`)
+
+        let taskTop = document.createElement('div')
+        taskTop.classList.add("task-top")
+        taskTop.insertAdjacentHTML('beforeend', `<p class="task-name">${this.name}</p>`)
+        taskTop.insertAdjacentHTML('beforeend', `<p class="task-description">${this.description}</p>`)
+
+        let taskBot = document.createElement('div')
+        taskBot.classList.add('task-bot')
+        taskBot.insertAdjacentHTML('beforeend', `<p class="day">${this.day}</p>`)
+        taskBot.insertAdjacentHTML('beforeend', `<p class="time">${this.time}</p>`)
+
+        taskDiv.append(taskTop)
+        taskDiv.append(taskBot)
+
+        let tasks = board.querySelector('.tasks')
+        tasks.prepend(taskDiv)
     }
 }
 
@@ -88,8 +139,32 @@ class Task {
     console.log(board.tasks)
 } */
 
+let todolist = document.querySelector('.todo-list')
+todolist.addEventListener('click', (ev) => {
+    if(ev.target.classList.contains('task-creator')) {
+        let curBoard = ev.target.parentElement
+        while(!curBoard.classList.contains('board')) {
+            curBoard = curBoard.parentElement
+        }
+        let task = new Task(curBoard)
+    }
+
+    if(ev.target.classList.contains('board-creator')) {
+        let curTodoList = ev.target.parentElement
+        while(!curTodoList.classList.contains('todo-list')) {
+            curTodoList = curTodoList.parentElement
+        }
+        let board = new Board('New board3', [], '007CFF')
+    }
+
+    if(ev.target.classList.contains('lock')) {
+        changeDraggingState(ev.target.parentElement)
+    }
+})
 
 
+
+let board = new Board('New board', [], '007CFF')
 
 
 let submit = document.getElementsByClassName('submit-new-workspace')
@@ -111,15 +186,6 @@ let tasks = document.querySelectorAll('.task')
 let containers = document.querySelectorAll('.tasks')
 
 draggingTasks(tasks, containers)
-
-for(let task of tasks) {
-    task.addEventListener('click', (ev) => {
-        if(ev.target.classList.contains('lock')) {
-            console.log(1)
-            changeDraggingState(task)
-        }
-    })
-}
 
 setProfilePicturePostion(document.querySelectorAll('.profile-picture'))
 

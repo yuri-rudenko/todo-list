@@ -23,8 +23,6 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
 
     for(let sub of subthemes) {
         sub.value = ''
-        subthemes[1].classList.add('display')
-        subthemes[2].classList.add('display')
     }
     name.value = ''
 

@@ -8,7 +8,7 @@ export function changeNavElState(ev, workspace) {
     }
     
     let lower = nav.querySelector('.lower')
-    lower.classList.toggle('visible')
+    lower.classList.add('visible')
     nav.classList.add('current')
     
     if(lower.classList.contains('visible')) {
@@ -37,5 +37,5 @@ export function changeNavElState(ev, workspace) {
 
     let text = nav.querySelector('.upper .lefters .workspace-name')
 
-    text.classList.toggle(fontFromLower)
+    text.classList.add(fontFromLower)
 }
