@@ -4,6 +4,15 @@ import { draggingTasks } from "./scripts/main-scripts/draggingTasks.js"
 import { changeDraggingState } from "./scripts/main-scripts/changeDragginState.js"
 import { setProfilePicturePostion } from "./scripts/main-scripts/setProfilePicturePostion.js"
 
+let colors = [
+    '007CFF',
+    '20A475',
+    '674EE3',
+    '8000AB',
+    'F8B33C',
+    'FF9392',
+]
+let colorCounter = 0;
 
 const main = {
     workspaces: [],
@@ -12,13 +21,45 @@ const main = {
 }
 
 class Workspace {
-    constructor(name, subthemes, boards) {
+    constructor(name, subthemes, boards, color) {
         this.name = name
         this.subthemes = subthemes
         this.description = "New workspace. You can change the description in the settings tab"
         this.assigned = []
         this.boards = boards
         this.tags = []
+        this.color = color
+        this.addNav()
+    }
+
+    addNav() {
+        let nav = document.querySelector('.workspaces')
+
+        let navEl = document.createElement('div')
+        navEl.classList.add('nav-el')
+
+        let upper = document.createElement('div')
+        upper.classList.add('upper')
+        let lefters = document.createElement('div')
+        lefters.classList.add('lefters')
+        lefters.insertAdjacentHTML('beforeend', `<img src="icons/figures/figure${this.color}.png" alt="" class="nav-figure">`)
+        lefters.insertAdjacentHTML('beforeend', `<p class="workspace-name">${this.name}</p>`)
+        upper.append(lefters)
+        upper.insertAdjacentHTML('beforeend', `<img src="icons/angle-down.png" alt="" class="opener">`)
+
+        let lower = document.createElement('div')
+        lower.classList.add('lower')
+        lower.classList.add(`h${this.color}`)
+        for(let sub of this.subthemes) {
+            let lowerEl = document.createElement('div')
+            lowerEl.classList.add('lower-el')
+            lowerEl.insertAdjacentHTML('beforeend', `<img src="icons/lines/h${this.color}.png" alt="" class="line">`)
+            lowerEl.insertAdjacentHTML('beforeend', `<p class="topics">${sub}</p>`)
+            lower.append(lowerEl)
+        }
+
+        navEl.append(upper, lower)
+        nav.append(navEl)
     }
 }
 
@@ -47,7 +88,7 @@ for(let board of basicBoards) {
     console.log(board.tasks)
 }
 
-let first = new Workspace('First workspace', ['Testing', "Showcase"], basicBoards)
+let first = new Workspace('First workspace', ['Testing', "Showcase"], basicBoards, colors[colorCounter])
 
 console.log(first)
 
