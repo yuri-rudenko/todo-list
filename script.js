@@ -4,6 +4,7 @@ import { draggingTasks } from "./scripts/main-scripts/draggingTasks.js"
 import { changeDraggingState } from "./scripts/main-scripts/changeDragginState.js"
 import { setProfilePicturePostion } from "./scripts/main-scripts/setProfilePicturePostion.js"
 import { createNewWorkspace } from "./scripts/logic/createNewWorkspace.js"
+import { getDragAfterElement } from "./scripts/main-scripts/draggingTasks.js"
 
 let colors = [
     '007CFF',
@@ -89,6 +90,18 @@ class Board {
         let tasks = document.createElement('div')
         tasks.classList.add('tasks')
 
+        tasks.addEventListener('dragover', (ev) => {
+            ev.preventDefault()
+            const afterEl = getDragAfterElement(tasks, ev.clientY)
+            const draggable = document.querySelector('.dragging')
+            if(afterEl == null) {
+                tasks.appendChild(draggable)
+            }
+            else {
+                tasks.insertBefore(draggable, afterEl)
+            }
+        })
+
         board.append(naming)
         board.append(adder)
         board.append(tasks)
@@ -128,6 +141,12 @@ class Task {
         taskDiv.append(taskBot)
 
         let tasks = board.querySelector('.tasks')
+        taskDiv.addEventListener('dragstart', () => {
+            taskDiv.classList.add('dragging')
+        })
+        taskDiv.addEventListener('dragend', () => {
+            taskDiv.classList.remove('dragging')
+        })
         tasks.prepend(taskDiv)
     }
 }
@@ -161,11 +180,6 @@ todolist.addEventListener('click', (ev) => {
         changeDraggingState(ev.target.parentElement)
     }
 })
-
-
-
-let board = new Board('New board', [], '007CFF')
-
 
 let submit = document.getElementsByClassName('submit-new-workspace')
 
