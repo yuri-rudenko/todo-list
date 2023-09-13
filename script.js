@@ -118,14 +118,15 @@ class Task {
         this.day = 'Enter date'
         this.time = 'Enter time'
         this.parentBoard = curBoard
+        this.lock = false
         this.addTask(this.parentBoard)
     }
 
     addTask(board) {
         let taskDiv = document.createElement('div')
         taskDiv.classList.add('task')
-        taskDiv.draggable = 'false'
-        taskDiv.insertAdjacentHTML('beforeend',`<img src="icons/unlock.png" class="lock" alt="">`)
+        taskDiv.draggable = false
+        taskDiv.insertAdjacentHTML('beforeend',`<img src="icons/lock.png" class="lock" alt="">`)
 
         let taskTop = document.createElement('div')
         taskTop.classList.add("task-top")
@@ -173,11 +174,30 @@ todolist.addEventListener('click', (ev) => {
         while(!curTodoList.classList.contains('todo-list')) {
             curTodoList = curTodoList.parentElement
         }
-        let board = new Board('New board3', [], '007CFF')
+        let board = new Board('New board', [], '007CFF')
     }
 
     if(ev.target.classList.contains('lock')) {
         changeDraggingState(ev.target.parentElement)
+    }
+})
+todolist.addEventListener('dblclick', (ev) => {
+    if(ev.target.classList.contains('lock')) {
+        let locks = document.querySelectorAll('.lock')
+        console.log(ev.target.src)
+        if(ev.target.classList.contains('closed')) {
+            for(let lock of locks) {
+                lock.parentElement.draggable = true
+                lock.src = "icons/unlock.png"
+
+            }   
+        }
+        else {
+            for(let lock of locks) {
+                lock.parentElement.draggable = false
+                lock.src = "icons/lock.png"
+            }
+        }
     }
 })
 
