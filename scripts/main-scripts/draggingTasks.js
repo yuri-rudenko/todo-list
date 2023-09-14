@@ -1,7 +1,5 @@
 export function draggingTasks(draggables, containers) {
 
-    let trash = document.querySelectorAll('.trash')
-
     for(let el of draggables) {
         el.addEventListener('dragstart', () => {
             el.classList.add('dragging')
@@ -20,21 +18,6 @@ export function draggingTasks(draggables, containers) {
             const afterEl = getDragAfterElement(cont, ev.clientY)
             const draggable = document.querySelector('.dragging')
             draggable.classList.remove("display")
-            if(afterEl == null) {
-                cont.appendChild(draggable)
-            }
-            else {
-                cont.insertBefore(draggable, afterEl)
-            }
-        })
-        
-    }
-    for(let cont of trash) {
-        cont.addEventListener('dragover', (ev) => {
-            ev.preventDefault()
-            const afterEl = getDragAfterElement(cont, ev.clientY)
-            const draggable = document.querySelector('.dragging')
-            draggable.classList.add("display")
             if(afterEl == null) {
                 cont.appendChild(draggable)
             }

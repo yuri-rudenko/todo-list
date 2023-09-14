@@ -1,4 +1,4 @@
-export function changeNavElState(ev, workspace) {
+export function changeNavElState(ev, workspace, main) {
     //  nav, navEls
     let nav = ev.target
     let navEls = workspace.querySelectorAll('.nav-el')

@@ -17,9 +17,12 @@ let colors = [
 let colorCounter = 0;
 
 const main = {
+
     workspaces: [],
+    activeWorkspace: 0,
     files: [],
     people: [],
+
 }
 
 class Workspace {
@@ -62,6 +65,51 @@ class Workspace {
 
         navEl.append(upper, lower)
         nav.append(navEl)
+
+
+        navEl.addEventListener('click', (ev) => {
+
+            let curNav = navEl
+            let navEls = nav.querySelectorAll('.nav-el')
+            while(!curNav.classList.contains('nav-el')) {
+                curNav = curNav.parentElement
+                if(curNav.classList.contains('wrapper')) return
+            }
+            
+            lower.classList.add('visible')
+            curNav.classList.add('current')
+            
+            if(lower.classList.contains('visible')) {
+                for(let el of navEls) {
+                    if(!el.classList.contains('current')) {
+                        let curLower = el.querySelector('.lower')
+                        curLower.classList.remove('visible')
+
+                        let textRemove = el.querySelector('.upper .lefters .workspace-name')
+                        textRemove.classList.remove('f8000AB')
+                        textRemove.classList.remove('f674EE3')
+                        textRemove.classList.remove('fF8B33C')
+                        textRemove.classList.remove('f007CFF')
+                        textRemove.classList.remove('f20A475')
+                        textRemove.classList.remove('fFF9392')
+                    }
+                }
+            }
+
+            curNav.classList.remove('current')
+
+            
+
+            let lowerColor = lower.classList[1]
+            let fontFromLower = 'f' + lowerColor.slice(1)
+
+            let text = curNav.querySelector('.upper .lefters .workspace-name')
+
+            text.classList.add(fontFromLower)
+
+        })
+        
+
     }
 
     drawWorkspace() {
@@ -81,16 +129,34 @@ class Workspace {
         addBoard.classList.add('add-board')
 
         let adder = document.createElement('div')
-        adder.classList.add('adder board-creator')
+        adder.classList.add('adder','board-creator')
         adder.insertAdjacentHTML('beforeend', '<p class="add-task board-creator">Add Board</p>')
         adder.insertAdjacentHTML('beforeend', '<p class="plus board-creator">+</p>')
         let deleter = document.createElement('div')
-        deleter.classList.add('deleter trash')
+        deleter.classList.add('deleter', 'trash')
         deleter.insertAdjacentHTML('beforeend', '<img src="icons/trash.png" alt="" class="trash">')
         deleter.insertAdjacentHTML('beforeend', '<p class="trash">Delete task</p>')
-
+        
         addBoard.append(adder, deleter)
         todoList.append(addBoard)
+
+        let trash = document.querySelectorAll('.trash')
+
+        for(let cont of trash) {
+            cont.addEventListener('dragover', (ev) => {
+                ev.preventDefault()
+                const afterEl = getDragAfterElement(cont, ev.clientY)
+                const draggable = document.querySelector('.dragging')
+                draggable.classList.add("display")
+                if(afterEl == null) {
+                    cont.appendChild(draggable)
+                }
+                else {
+                    cont.insertBefore(draggable, afterEl)
+                }
+            })
+            
+        }
 
         let i = 0
 
@@ -177,16 +243,15 @@ class Workspace {
             i++
         }
 
-
-
     }
 
     undrawWorkspace() {
         let boards = document.querySelectorAll('.board')
-        console.log(boards)
+        let addBoard = document.querySelector('.add-board')
         for(let board of boards) {
             board.remove()
         }
+        addBoard.remove()
     }
 }
 
@@ -474,7 +539,6 @@ todolist.addEventListener('click', (ev) => {
         }
         let board = new Board('New board', [], '007CFF')
     }
-
 })
 
 let submit = document.getElementsByClassName('submit-new-workspace')
@@ -485,9 +549,6 @@ submit[0].addEventListener('click', () => {
 let workspace = document.querySelector('.workspaces')
 let createSpace = document.querySelector('.create')
 
-workspace.addEventListener('click', (ev) => {
-    changeNavElState(ev, workspace)
-}) 
 
 createSpace.addEventListener('click', makeNewSpaceVisible)
 

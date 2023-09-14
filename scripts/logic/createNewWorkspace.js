@@ -15,8 +15,16 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
 
     
     let basicBoards = [new Board('Todos'), new Board('In Progress'),new Board('Is Done')]
-    
-    const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter]) 
+
+    let boards = document.querySelectorAll('.board')
+    let addBoard = document.querySelector('.add-board')
+    for(let board of boards) {
+        board.remove()
+    }
+    addBoard.remove()
+
+    const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
+    workspace.drawWorkspace() 
 
     main.workspaces.push(workspace)
 
