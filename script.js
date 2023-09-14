@@ -97,9 +97,7 @@ class Workspace {
             }
 
             curNav.classList.remove('current')
-
             
-
             let lowerColor = lower.classList[1]
             let fontFromLower = 'f' + lowerColor.slice(1)
 
@@ -107,6 +105,14 @@ class Workspace {
 
             text.classList.add(fontFromLower)
 
+            let boards = document.querySelectorAll('.board')
+            let addBoard = document.querySelector('.add-board')
+            for(let board of boards) {
+                board.remove()
+            }
+            addBoard.remove()
+
+            this.drawWorkspace()
         })
         
 
@@ -173,20 +179,15 @@ class Workspace {
             adder.classList.add('adder', 'task-creator')
             adder.insertAdjacentHTML('beforeend', `<p class="add-task task-creator">Add Task</p>`)
             adder.insertAdjacentHTML('beforeend', `<p class="plus task-creator">+</p>`)
-
-            adder.addEventListener('click', (ev) => {       
-                if(ev.target.classList.contains('board-creator')) {
-                    let curTodoList = ev.target.parentElement
-                    while(!curTodoList.classList.contains('todo-list')) {
-                        curTodoList = curTodoList.parentElement
-                    }
-                    this.boards.push(new Board('New board', [], '007CFF')) 
-                }
-            })
-            
-    
+               
             let tasks = document.createElement('div')
             tasks.classList.add('tasks')
+
+            board.append(naming)
+            board.append(adder)
+            board.append(tasks)
+
+            let j = 0
 
             for(let task of this.boards[i].tasks) {
                 
@@ -197,18 +198,19 @@ class Workspace {
 
                 let taskTop = document.createElement('div')
                 taskTop.classList.add("task-top")
-                taskTop.insertAdjacentHTML('beforeend', `<p class="task-name">${this.name}</p>`)
-                taskTop.insertAdjacentHTML('beforeend', `<p class="task-description">${this.description}</p>`)
+                taskTop.insertAdjacentHTML('beforeend', `<p class="task-name">${this.boards[i].tasks[j].name}</p>`)
+                taskTop.insertAdjacentHTML('beforeend', `<p class="task-description">${this.boards[i].tasks[j].description}</p>`)
 
                 let taskBot = document.createElement('div')
                 taskBot.classList.add('task-bot')
-                taskBot.insertAdjacentHTML('beforeend', `<p class="day">${this.day}</p>`)
-                taskBot.insertAdjacentHTML('beforeend', `<p class="time">${this.time}</p>`)
+                taskBot.insertAdjacentHTML('beforeend', `<p class="day">${this.boards[i].tasks[j].day}</p>`)
+                taskBot.insertAdjacentHTML('beforeend', `<p class="time">${this.boards[i].tasks[j].time}</p>`)
 
                 taskDiv.append(taskTop)
                 taskDiv.append(taskBot)
 
                 let tasks = board.querySelector('.tasks')
+
                 taskDiv.addEventListener('dragstart', () => {
                     taskDiv.classList.add('dragging')
                 })
@@ -219,12 +221,15 @@ class Workspace {
                     taskDiv.classList.remove('dragging')
                 })
                 tasks.prepend(taskDiv)
+
+                j++
             }
     
             tasks.addEventListener('dragover', (ev) => {
                 ev.preventDefault()
                 const afterEl = getDragAfterElement(tasks, ev.clientY)
                 const draggable = document.querySelector('.dragging')
+                draggable.classList.remove("display")
                 if(afterEl == null) {
                     tasks.appendChild(draggable)
                 }
@@ -233,16 +238,21 @@ class Workspace {
                 }
             })
     
-            board.append(naming)
-            board.append(adder)
-            board.append(tasks)
-    
             let addBoard = document.querySelector('.add-board')
             addBoard.before(board)
 
             i++
         }
 
+        adder.addEventListener('click', (ev) => {       
+            if(ev.target.classList.contains('board-creator')) {
+                let curTodoList = ev.target.parentElement
+                while(!curTodoList.classList.contains('todo-list')) {
+                    curTodoList = curTodoList.parentElement
+                }
+                this.boards.push(new Board('New board', [], '007CFF'))
+            }
+        })
     }
 
     undrawWorkspace() {
@@ -283,6 +293,7 @@ class Board {
                 while(!curBoard.classList.contains('board')) {
                     curBoard = curBoard.parentElement
                 }
+                console.log(1)
                 this.tasks.unshift(new Task(curBoard)) 
             }
         })
@@ -294,6 +305,7 @@ class Board {
             ev.preventDefault()
             const afterEl = getDragAfterElement(tasks, ev.clientY)
             const draggable = document.querySelector('.dragging')
+            draggable.classList.remove("display")
             if(afterEl == null) {
                 tasks.appendChild(draggable)
             }
@@ -524,22 +536,7 @@ class Task {
 }
 
 
-/* for(let board of basicBoards) {
-    let testTask = new Task('First tusk', 'My first tusk', 'Today', '12:00', '15:00')
-    board.tasks.push(testTask)
-    console.log(board.tasks)
-} */
 
-let todolist = document.querySelector('.todo-list')
-todolist.addEventListener('click', (ev) => {
-    if(ev.target.classList.contains('board-creator')) {
-        let curTodoList = ev.target.parentElement
-        while(!curTodoList.classList.contains('todo-list')) {
-            curTodoList = curTodoList.parentElement
-        }
-        let board = new Board('New board', [], '007CFF')
-    }
-})
 
 let submit = document.getElementsByClassName('submit-new-workspace')
 submit[0].addEventListener('click', () => {
