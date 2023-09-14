@@ -183,7 +183,6 @@ todolist.addEventListener('click', (ev) => {
 
     if(ev.target.classList.contains('task-name')) {
         if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
-            console.log(ev.target.tagName)
             let input = document.createElement('input')
             input.type = 'text'
             input.classList.add('task-name')
@@ -210,7 +209,6 @@ todolist.addEventListener('click', (ev) => {
     }
     if(ev.target.classList.contains('task-description')) {
         if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
-            console.log(ev.target.tagName)
             let input = document.createElement('input')
             input.type = 'text'
             input.classList.add('task-description')
@@ -237,7 +235,6 @@ todolist.addEventListener('click', (ev) => {
     }
     if(ev.target.classList.contains('day')) {
         if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
-            console.log(ev.target.tagName)
             let input = document.createElement('input')
             input.type = 'text'
             input.classList.add('day')
@@ -264,7 +261,6 @@ todolist.addEventListener('click', (ev) => {
     }
     if(ev.target.classList.contains('time')) {
         if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
-            console.log(ev.target.tagName)
             let input = document.createElement('input')
             input.type = 'text'
             input.classList.add('time')
@@ -310,7 +306,6 @@ todolist.addEventListener('dblclick', (ev) => {
     }
     if(ev.target.classList.contains('board-name')) {
         if(ev.target.tagName != 'INPUT') {
-            console.log(ev.target.tagName)
             let input = document.createElement('input')
             input.type = 'text'
             input.classList.add('board-name')

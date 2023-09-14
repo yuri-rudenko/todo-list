@@ -444,11 +444,31 @@ main .todo-list .add-board .adder {
     width: 250px;
     border-radius: 10px;
     font-family: belbo-semibold;
+    height: 54px;
 }
 main .todo-list .add-board .adder .plus {
     font-family: belbo-light;
     font-size: 40px;
 }
+main .todo-list .add-board .deleter {
+    padding: 10px;
+    background-color: rgb(255, 198, 198);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    height: 56px;
+    margin-bottom: 20px;
+}
+main .todo-list .add-board .deleter img {
+    margin-right: 10px;
+    height: 28px;
+}
+main .todo-list .add-board .deleter p {
+    color: red;
+    font-size: 22px;
+}
+
 
 
 
