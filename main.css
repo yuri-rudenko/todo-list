@@ -181,7 +181,7 @@ img {
 }
 .wrapper main .top .work-info {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .wrapper main .top .work-info .description {
     margin-right: 10%;

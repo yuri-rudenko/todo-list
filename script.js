@@ -63,6 +63,91 @@ class Workspace {
         navEl.append(upper, lower)
         nav.append(navEl)
     }
+
+    drawWorkspace() {
+        let name = document.querySelector('.description .name p')
+        name.innerHTML = this.name
+
+        let logo = document.querySelector('.description .name img')
+        logo.src = `icons/figures/figure${this.color}.png`
+
+        let description = document.querySelector('.description .work-description p')
+        description.innerHTML = this.description
+
+        let i = 0
+
+        for(let board of this.boards) {
+            let board = document.createElement('div')
+            board.classList.add('board')
+    
+            let naming = document.createElement('div')
+            naming.classList.add('naming')
+            naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.boards[i].color}"></div>`)
+            naming.insertAdjacentHTML('beforeend', `<p class="board-name">${this.boards[i].name}</p>`)
+            
+            let adder = document.createElement('div')
+            adder.classList.add('adder', 'task-creator')
+            adder.insertAdjacentHTML('beforeend', `<p class="add-task task-creator">Add Task</p>`)
+            adder.insertAdjacentHTML('beforeend', `<p class="plus task-creator">+</p>`)
+    
+            let tasks = document.createElement('div')
+            tasks.classList.add('tasks')
+
+            for(let task of this.boards[i].tasks) {
+                
+                let taskDiv = document.createElement('div')
+                taskDiv.classList.add('task')
+                taskDiv.draggable = false
+                taskDiv.insertAdjacentHTML('beforeend',`<img src="icons/lock.png" class="lock" alt="">`)
+
+                let taskTop = document.createElement('div')
+                taskTop.classList.add("task-top")
+                taskTop.insertAdjacentHTML('beforeend', `<p class="task-name">${this.name}</p>`)
+                taskTop.insertAdjacentHTML('beforeend', `<p class="task-description">${this.description}</p>`)
+
+                let taskBot = document.createElement('div')
+                taskBot.classList.add('task-bot')
+                taskBot.insertAdjacentHTML('beforeend', `<p class="day">${this.day}</p>`)
+                taskBot.insertAdjacentHTML('beforeend', `<p class="time">${this.time}</p>`)
+
+                taskDiv.append(taskTop)
+                taskDiv.append(taskBot)
+
+                let tasks = board.querySelector('.tasks')
+                taskDiv.addEventListener('dragstart', () => {
+                    taskDiv.classList.add('dragging')
+                })
+                taskDiv.addEventListener('dragend', () => {
+                    if(taskDiv.classList.contains('display')) {
+                        taskDiv.remove()
+                    }
+                    taskDiv.classList.remove('dragging')
+                })
+                tasks.prepend(taskDiv)
+            }
+    
+            tasks.addEventListener('dragover', (ev) => {
+                ev.preventDefault()
+                const afterEl = getDragAfterElement(tasks, ev.clientY)
+                const draggable = document.querySelector('.dragging')
+                if(afterEl == null) {
+                    tasks.appendChild(draggable)
+                }
+                else {
+                    tasks.insertBefore(draggable, afterEl)
+                }
+            })
+    
+            board.append(naming)
+            board.append(adder)
+            board.append(tasks)
+    
+            let todolist = document.querySelector('.add-board')
+            todolist.before(board)
+
+            i++
+        }
+    }
 }
 
 class Board {
@@ -109,6 +194,7 @@ class Board {
         let todolist = document.querySelector('.add-board')
         todolist.before(board)
     }
+
 }
 
 class Task {
@@ -145,11 +231,11 @@ class Task {
         taskDiv.addEventListener('dragstart', () => {
             taskDiv.classList.add('dragging')
         })
-        el.addEventListener('dragend', () => {
-            if(el.classList.contains('display')) {
-                el.remove()
+        taskDiv.addEventListener('dragend', () => {
+            if(taskDiv.classList.contains('display')) {
+                taskDiv.remove()
             }
-            el.classList.remove('dragging')
+            taskDiv.classList.remove('dragging')
         })
         tasks.prepend(taskDiv)
     }
