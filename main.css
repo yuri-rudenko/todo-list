@@ -159,7 +159,8 @@ img {
 
 .wrapper main {
     border-left: #c0c0c0 2px solid;
-    min-height: 100vh
+    min-height: 100vh;
+    width: 100%;
 }
 .wrapper main .top {
     display: flex;
