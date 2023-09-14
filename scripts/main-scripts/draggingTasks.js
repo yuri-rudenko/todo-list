@@ -1,6 +1,6 @@
 export function draggingTasks(draggables, containers) {
 
-    let adders = document.querySelectorAll('.trash')
+    let trash = document.querySelectorAll('.trash')
 
     for(let el of draggables) {
         el.addEventListener('dragstart', () => {
@@ -29,7 +29,7 @@ export function draggingTasks(draggables, containers) {
         })
         
     }
-    for(let cont of adders) {
+    for(let cont of trash) {
         cont.addEventListener('dragover', (ev) => {
             ev.preventDefault()
             const afterEl = getDragAfterElement(cont, ev.clientY)

@@ -145,8 +145,11 @@ class Task {
         taskDiv.addEventListener('dragstart', () => {
             taskDiv.classList.add('dragging')
         })
-        taskDiv.addEventListener('dragend', () => {
-            taskDiv.classList.remove('dragging')
+        el.addEventListener('dragend', () => {
+            if(el.classList.contains('display')) {
+                el.remove()
+            }
+            el.classList.remove('dragging')
         })
         tasks.prepend(taskDiv)
     }

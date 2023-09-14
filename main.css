@@ -452,7 +452,7 @@ main .todo-list .add-board .adder .plus {
 }
 main .todo-list .add-board .deleter {
     padding: 10px;
-    background-color: rgb(255, 198, 198);
+    background-color: rgb(255, 207, 207);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -462,11 +462,11 @@ main .todo-list .add-board .deleter {
 }
 main .todo-list .add-board .deleter img {
     margin-right: 10px;
-    height: 28px;
+    height: 24px;
 }
 main .todo-list .add-board .deleter p {
-    color: red;
-    font-size: 22px;
+    color: rgb(255, 36, 36);
+    font-size: 20px;
 }
 
 
