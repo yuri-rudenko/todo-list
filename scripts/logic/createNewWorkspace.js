@@ -13,10 +13,10 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
         if(sub.value) resSubthemes.push(sub.value)
     }
 
+    
     let basicBoards = [new Board('Todos'), new Board('In Progress'),new Board('Is Done')]
-
-    const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
-    console.log(workspace)
+    
+    const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter]) 
 
     main.workspaces.push(workspace)
 
