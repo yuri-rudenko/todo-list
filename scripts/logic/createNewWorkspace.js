@@ -22,6 +22,7 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
         board.remove()
     }
     addBoard.remove()
+    document.querySelector('.images-container').innerHTML = ''
 
     const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
     workspace.drawWorkspace() 

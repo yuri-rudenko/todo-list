@@ -5,16 +5,8 @@ import { changeDraggingState } from "./scripts/main-scripts/changeDragginState.j
 import { setProfilePicturePostion } from "./scripts/main-scripts/setProfilePicturePostion.js"
 import { createNewWorkspace } from "./scripts/logic/createNewWorkspace.js"
 import { getDragAfterElement } from "./scripts/main-scripts/draggingTasks.js"
-
-const componentToHex = (c) => {
-    const hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-}
-
-function rgbHex(rgb) {
-    let arr = rgb.split(',').map((num) => parseInt(num))
-    return "#" + componentToHex(arr[0]) + componentToHex(arr[1]) + componentToHex(arr[2]);
-}
+import { rgbHex } from "./scripts/logic/rgbHex.js"
+import { undrawWorkspace } from "./scripts/logic/undrawWorkspace.js"
 
 let colors = [
     '007CFF',
@@ -27,11 +19,24 @@ let colors = [
 let colorCounter = 0;
 
 const main = {
-
     workspaces: [],
     activeWorkspace: 0,
     files: [],
-    people: [],
+    people: [
+        './img/profile-pictures/1.jpg',
+        './img/profile-pictures/2.jpg',
+        './img/profile-pictures/3.jpg',
+        './img/profile-pictures/4.jpg',
+        './img/profile-pictures/5.jpg',
+        './img/profile-pictures/6.jpg',
+        './img/profile-pictures/7.png',
+        './img/profile-pictures/8.jpg',
+        './img/profile-pictures/9.jpg',
+        './img/profile-pictures/10.jpg',
+        './img/profile-pictures/11.jpg',
+        './img/profile-pictures/12.jpg',
+        './img/profile-pictures/13.jpg',
+    ],
 
 }
 
@@ -40,7 +45,7 @@ class Workspace {
         this.name = name
         this.subthemes = subthemes
         this.description = "New workspace. You can change the description in the settings tab"
-        this.assigned = []
+        this.assigned = [main.people[1], main.people[5], main.people[6]]
         this.boards = boards
         this.tags = []
         this.color = color
@@ -150,13 +155,8 @@ class Workspace {
             let text = curNav.querySelector('.upper .lefters .workspace-name')
 
             text.classList.add(fontFromLower)
-
-            let boards = document.querySelectorAll('.board')
-            let addBoard = document.querySelector('.add-board')
-            for(let board of boards) {
-                board.remove()
-            }
-            addBoard.remove()
+            
+            undrawWorkspace()
 
             this.drawWorkspace()
         })
@@ -178,6 +178,11 @@ class Workspace {
 
         let addBoard = document.createElement('div')
         addBoard.classList.add('add-board')
+
+        let imagesContainer = document.querySelector('.images-container')
+        for(let pfp of this.assigned) {
+            imagesContainer.insertAdjacentHTML('beforeend', `<img src="${pfp}" alt="" class="profile-picture"></img>`)
+        }
 
         let adder = document.createElement('div')
         adder.classList.add('adder','board-creator')
@@ -225,15 +230,6 @@ class Workspace {
                 this.boards.push(new Board('New board', [], '007CFF'))
             }
         })
-    }
-
-    undrawWorkspace() {
-        let boards = document.querySelectorAll('.board')
-        let addBoard = document.querySelector('.add-board')
-        for(let board of boards) {
-            board.remove()
-        }
-        addBoard.remove()
     }
 }
 
@@ -898,14 +894,11 @@ class Task {
 
 let basicBoards = [new Board('Todos', [], '007CFF'), new Board('In Progress', [], 'cccccc'),new Board('Is Done', [], `20A475`)]
 let newWorkspace = new Workspace('New Workspace', ['Testing', 'Showcase'], basicBoards, colors[colorCounter])
-let boards = document.querySelectorAll('.board')
-let addBoard = document.querySelector('.add-board')
-for(let board of boards) {
-    board.remove()
-}
+
 document.querySelector('.workspace-name').classList.add('f007CFF')
 document.querySelector('.lower').classList.add('visible')
-addBoard.remove()
+
+undrawWorkspace()
 newWorkspace.drawWorkspace()
 main.workspaces.push(newWorkspace)
 colorCounter++
