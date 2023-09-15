@@ -6,6 +6,16 @@ import { setProfilePicturePostion } from "./scripts/main-scripts/setProfilePictu
 import { createNewWorkspace } from "./scripts/logic/createNewWorkspace.js"
 import { getDragAfterElement } from "./scripts/main-scripts/draggingTasks.js"
 
+const componentToHex = (c) => {
+    const hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbHex(rgb) {
+    let arr = rgb.split(',').map((num) => parseInt(num))
+    return "#" + componentToHex(arr[0]) + componentToHex(arr[1]) + componentToHex(arr[2]);
+}
+
 let colors = [
     '007CFF',
     '20A475',
@@ -317,6 +327,35 @@ class Board {
         board.append(adder)
         board.append(tasks)
 
+        naming.addEventListener('click', (ev) => {
+            if(ev.target.classList.contains('sphere')) {
+
+                let input = document.createElement('input')
+                input.type = 'color'
+                input.classList.add('sphere-color')
+                input.innerHTML = ev.target.innerHTML
+                
+                if(ev.target.tagName != 'INPUT') {
+                    let color = '#'+ this.color
+                    input.value = color
+                }
+
+                ev.target.classList.add('display')
+            
+                ev.target.before(input)
+            
+                input.focus()
+                
+                input.addEventListener('focusout', () => {
+                    let newVal = input.value
+                    input.remove()
+                    if(newVal) ev.target.style.backgroundColor = newVal
+                    this.color = rgbHex(ev.target.style.backgroundColor.slice(4, -1)).slice(1)
+                    ev.target.classList.remove('display')
+                })
+            }
+        })
+
         board.addEventListener('dblclick', (ev) => {
             if(ev.target.classList.contains('board-name')) {
                 if(ev.target.tagName != 'INPUT') {
@@ -374,6 +413,35 @@ class Board {
                 let createdTask = new Task(curBoard)
                 this.tasks.unshift(createdTask)
                 createdTask.addTask(curBoard)
+            }
+        })
+
+        naming.addEventListener('click', (ev) => {
+            if(ev.target.classList.contains('sphere')) {
+
+                let input = document.createElement('input')
+                input.type = 'color'
+                input.classList.add('sphere-color')
+                input.innerHTML = ev.target.innerHTML
+                
+                if(ev.target.tagName != 'INPUT') {
+                    let color = '#'+ this.color
+                    input.value = color
+                }
+
+                ev.target.classList.add('display')
+            
+                ev.target.before(input)
+            
+                input.focus()
+                
+                input.addEventListener('focusout', () => {
+                    let newVal = input.value
+                    input.remove()
+                    if(newVal) ev.target.style.backgroundColor = newVal
+                    this.color = rgbHex(ev.target.style.backgroundColor.slice(4, -1)).slice(1)
+                    ev.target.classList.remove('display')
+                })
             }
         })
            
