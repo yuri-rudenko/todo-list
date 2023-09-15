@@ -32,6 +32,7 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
         sub.value = ''
     }
     name.value = ''
+    name.focus()
 
     if(colorCounter == 5) return 0
     else return colorCounter+1

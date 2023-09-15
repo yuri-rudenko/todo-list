@@ -16,6 +16,8 @@ export function makeNewSpaceVisible() {
         subthemes[2].classList.add('display')
         pop[0].classList.add('display')
     })
+
+    name.focus()
     
     
     document.addEventListener('keypress', () => {

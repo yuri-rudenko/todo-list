@@ -419,7 +419,8 @@ main .todo-list .board .tasks .task .task-bot {
     font-size: 15px;
 }
 main .todo-list .board .tasks .task .task-bot .day {
-    max-width: 150px;
+    max-width: 200px;
+    min-width: 50px;
     font-size: 15px;
     margin-right: 7px;
     font-family: belbo-semibold;

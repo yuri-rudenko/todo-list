@@ -66,6 +66,42 @@ class Workspace {
         navEl.append(upper, lower)
         nav.append(navEl)
 
+        let curNav = navEl
+            let navEls = nav.querySelectorAll('.nav-el')
+            while(!curNav.classList.contains('nav-el')) {
+                curNav = curNav.parentElement
+                if(curNav.classList.contains('wrapper')) return
+            }
+            
+            lower.classList.add('visible')
+            curNav.classList.add('current')
+            
+            if(lower.classList.contains('visible')) {
+                for(let el of navEls) {
+                    if(!el.classList.contains('current')) {
+                        let curLower = el.querySelector('.lower')
+                        curLower.classList.remove('visible')
+
+                        let textRemove = el.querySelector('.upper .lefters .workspace-name')
+                        textRemove.classList.remove('f8000AB')
+                        textRemove.classList.remove('f674EE3')
+                        textRemove.classList.remove('fF8B33C')
+                        textRemove.classList.remove('f007CFF')
+                        textRemove.classList.remove('f20A475')
+                        textRemove.classList.remove('fFF9392')
+                    }
+                }
+            }
+
+            curNav.classList.remove('current')
+            
+            let lowerColor = lower.classList[1]
+            let fontFromLower = 'f' + lowerColor.slice(1)
+
+            let text = curNav.querySelector('.upper .lefters .workspace-name')
+
+            text.classList.add(fontFromLower)
+
 
         navEl.addEventListener('click', (ev) => {
 
@@ -386,6 +422,36 @@ class Board {
         board.append(adder)
         board.append(tasks)
 
+        board.addEventListener('dblclick', (ev) => {
+            if(ev.target.classList.contains('board-name')) {
+                if(ev.target.tagName != 'INPUT') {
+                    let input = document.createElement('input')
+                    input.type = 'text'
+                    input.classList.add('board-name')
+                    input.innerHTML = ev.target.innerHTML
+            
+                    let inputStyle = getComputedStyle(ev.target)
+                    input.style.width = `${parseInt(inputStyle.width)+50}px`
+                    input.value = `${ev.target.innerHTML}`
+            
+                    ev.target.classList.add('display')
+        
+                    ev.target.before(input)
+        
+                    input.focus()
+            
+                    input.addEventListener('focusout', () => {
+                        let newVal = input.value
+                        input.remove()
+                        if(newVal) ev.target.innerHTML = newVal
+                        else ev.target.innerHTML = "New board"
+                        this.name = `${ev.target.innerHTML}`
+                        ev.target.classList.remove('display')
+                    })
+                }  
+            }
+        })
+
         let j = 0
 
         for(let task of this.tasks) {
@@ -515,13 +581,14 @@ class Task {
             if(ev.target.classList.contains('day')) {
                 if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
                     let input = document.createElement('input')
-                    input.type = 'text'
+                    input.type = 'date'
                     input.classList.add('day')
-                    input.innerHTML = ev.target.innerHTML
+                    
+                    input.value = `2023-${ev.target.innerHTML}`
+                    console.log(input.value)
             
                     let inputStyle = getComputedStyle(ev.target)
                     input.style.width = `${parseInt(inputStyle.width)+50}px`
-                    input.value = `${ev.target.innerHTML}`
             
                     ev.target.classList.add('display')
         
@@ -530,7 +597,7 @@ class Task {
                     input.focus()
             
                     input.addEventListener('focusout', () => {
-                        let newVal = input.value
+                        let newVal = input.value.slice(5)
                         input.remove()
                         if(newVal) ev.target.innerHTML = newVal
                         else ev.target.innerHTML = "Enter day"
@@ -542,7 +609,7 @@ class Task {
             if(ev.target.classList.contains('time')) {
                 if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
                     let input = document.createElement('input')
-                    input.type = 'text'
+                    input.type = 'time'
                     input.classList.add('time')
                     input.innerHTML = ev.target.innerHTML
             
@@ -686,13 +753,12 @@ class Task {
             if(ev.target.classList.contains('day')) {
                 if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
                     let input = document.createElement('input')
-                    input.type = 'text'
+                    input.type = 'date'
                     input.classList.add('day')
-                    input.innerHTML = ev.target.innerHTML
+                    input.value = `2023-${ev.target.innerHTML}`
             
                     let inputStyle = getComputedStyle(ev.target)
                     input.style.width = `${parseInt(inputStyle.width)+50}px`
-                    input.value = `${ev.target.innerHTML}`
             
                     ev.target.classList.add('display')
         
@@ -713,7 +779,7 @@ class Task {
             if(ev.target.classList.contains('time')) {
                 if(ev.target.parentElement.parentElement.draggable == false && ev.target.tagName != 'INPUT') {
                     let input = document.createElement('input')
-                    input.type = 'text'
+                    input.type = 'time'
                     input.classList.add('time')
                     input.innerHTML = ev.target.innerHTML
             
@@ -769,6 +835,8 @@ let addBoard = document.querySelector('.add-board')
 for(let board of boards) {
     board.remove()
 }
+document.querySelector('.workspace-name').classList.add('f007CFF')
+document.querySelector('.lower').classList.add('visible')
 addBoard.remove()
 newWorkspace.drawWorkspace()
 main.workspaces.push(newWorkspace)
