@@ -14,7 +14,7 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
     }
 
     
-    let basicBoards = [new Board('Todos'), new Board('In Progress'),new Board('Is Done')]
+    let basicBoards = [new Board('Todos', [], '007CFF'), new Board('In Progress', [], 'cccccc'),new Board('Is Done', [], `20A475`)]
 
     let boards = document.querySelectorAll('.board')
     let addBoard = document.querySelector('.add-board')

@@ -128,7 +128,6 @@ class Workspace {
         let description = document.querySelector('.description .work-description p')
         description.innerHTML = this.description
 
-
         let todoList = document.querySelector('.todo-list')
 
         let addBoard = document.createElement('div')
@@ -206,7 +205,7 @@ class Board {
 
         let naming = document.createElement('div')
         naming.classList.add('naming')
-        naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.color}"></div>`)
+        naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.color}" style="background-color:#${this.color}"></div>`)
         naming.insertAdjacentHTML('beforeend', `<p class="board-name">${this.name}</p>`)
         
         let adder = document.createElement('div')
@@ -220,8 +219,9 @@ class Board {
                 while(!curBoard.classList.contains('board')) {
                     curBoard = curBoard.parentElement
                 }
-                console.log(1)
-                this.tasks.unshift(new Task(curBoard)) 
+                let createdTask = new Task(curBoard)
+                this.tasks.unshift(createdTask)
+                createdTask.addTask(curBoard)
             }
         })
 
@@ -239,6 +239,42 @@ class Board {
             else {
                 tasks.insertBefore(draggable, afterEl)
             }
+        }) 
+
+        tasks.addEventListener('dragenter', (ev) => {
+            let tasks = ev.target
+            while(!tasks.classList.contains('tasks')) {
+                tasks = tasks.parentElement
+            }
+            
+            let taskEls = tasks.querySelectorAll('.task')
+            this.tasks = []
+            for(let task of taskEls) {
+                let name = task.querySelector('.task-name').innerHTML
+                let description = task.querySelector('.task-description').innerHTML
+                let date = task.querySelector('.day').innerHTML
+                let time = task.querySelector('.time').innerHTML
+                this.tasks.push(new Task(board, name, description, date, time))
+            }
+        })
+        tasks.addEventListener('dragleave', (ev) => {
+            let tasks = ev.target
+            while(!tasks.classList.contains('tasks')) {
+                tasks = tasks.parentElement
+            }
+            
+            setTimeout(() => {
+                let taskEls = tasks.querySelectorAll('.task')
+            this.tasks = []
+            for(let task of taskEls) {
+                let name = task.querySelector('.task-name').innerHTML
+                let description = task.querySelector('.task-description').innerHTML
+                let date = task.querySelector('.day').innerHTML
+                let time = task.querySelector('.time').innerHTML
+                this.tasks.push(new Task(board, name, description, date, time))
+            }
+            }, 500)
+            
         })
 
         board.append(naming)
@@ -285,7 +321,7 @@ class Board {
 
         let naming = document.createElement('div')
         naming.classList.add('naming')
-        naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.color}"></div>`)
+        naming.insertAdjacentHTML('beforeend', `<div class="sphere b${this.color}" style="background-color:#${this.color}"></div>`)
         naming.insertAdjacentHTML('beforeend', `<p class="board-name">${this.name}</p>`)
         
         let adder = document.createElement('div')
@@ -299,13 +335,52 @@ class Board {
                 while(!curBoard.classList.contains('board')) {
                     curBoard = curBoard.parentElement
                 }
-                console.log(1)
-                this.tasks.unshift(new Task(curBoard)) 
+                let createdTask = new Task(curBoard)
+                this.tasks.unshift(createdTask)
+                createdTask.addTask(curBoard)
             }
         })
            
         let tasks = document.createElement('div')
         tasks.classList.add('tasks')
+
+        tasks.addEventListener('dragenter', (ev) => {
+            let tasks = ev.target
+            while(!tasks.classList.contains('tasks')) {
+                tasks = tasks.parentElement
+            }
+            
+            let taskEls = tasks.querySelectorAll('.task')
+            this.tasks = []
+            for(let task of taskEls) {
+                let name = task.querySelector('.task-name').innerHTML
+                let description = task.querySelector('.task-description').innerHTML
+                let date = task.querySelector('.day').innerHTML
+                let time = task.querySelector('.time').innerHTML
+                this.tasks.push(new Task(board, name, description, date, time))
+            }
+        })
+
+
+        tasks.addEventListener('dragleave', (ev) => {
+            let tasks = ev.target
+            while(!tasks.classList.contains('tasks')) {
+                tasks = tasks.parentElement
+            }
+            
+            setTimeout(() => {
+                let taskEls = tasks.querySelectorAll('.task')
+            this.tasks = []
+            for(let task of taskEls) {
+                let name = task.querySelector('.task-name').innerHTML
+                let description = task.querySelector('.task-description').innerHTML
+                let date = task.querySelector('.day').innerHTML
+                let time = task.querySelector('.time').innerHTML
+                this.tasks.push(new Task(board, name, description, date, time))
+            }
+            }, 500)
+            
+        })
 
         board.append(naming)
         board.append(adder)
@@ -339,14 +414,13 @@ class Board {
 
 
 class Task {
-    constructor(curBoard) {
-        this.name = 'Enter name'
-        this.description = 'Enter description'
-        this.day = 'Enter date'
-        this.time = 'Enter time'
+    constructor(curBoard, name = 'Enter name', description = 'Enter description', day = 'Enter date', time = 'Enter time') {
+        this.name = name
+        this.description = description 
+        this.day = day
+        this.time = time
         this.parentBoard = curBoard
         this.lock = false
-        this.addTask(this.parentBoard)
     }
 
     addTask(board) {
@@ -688,8 +762,17 @@ class Task {
     }
 }
 
-
-
+let basicBoards = [new Board('Todos', [], '007CFF'), new Board('In Progress', [], 'cccccc'),new Board('Is Done', [], `20A475`)]
+let newWorkspace = new Workspace('New Workspace', ['Testing', 'Showcase'], basicBoards, colors[colorCounter])
+let boards = document.querySelectorAll('.board')
+let addBoard = document.querySelector('.add-board')
+for(let board of boards) {
+    board.remove()
+}
+addBoard.remove()
+newWorkspace.drawWorkspace()
+main.workspaces.push(newWorkspace)
+colorCounter++
 
 let submit = document.getElementsByClassName('submit-new-workspace')
 submit[0].addEventListener('click', () => {
