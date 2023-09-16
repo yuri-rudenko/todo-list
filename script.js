@@ -1105,3 +1105,46 @@ let add = document.querySelector('.add')
 add.addEventListener('click', () => {
     assign.classList.remove('display')
 })
+
+let search = document.querySelector('.search-workspace')
+document.addEventListener('keyup', () => {
+    if(search.value) {
+        let workspaces = document.getElementsByClassName("workspace-name")
+        
+        let smallSearch = search.value.toLowerCase()
+        for(let workspace of workspaces) {
+            let check = false
+
+            let smallWork = workspace.innerHTML.toLowerCase()
+
+            if(smallWork.includes(`${smallSearch}`)) {
+                check = true
+            }
+
+            let topics = workspace.parentElement.parentElement.parentElement.getElementsByClassName("topics")
+            for(let topic of topics) {
+                let smallTopic = topic.innerHTML.toLowerCase()
+                if(smallTopic.includes(`${smallSearch}`)) {
+                    check = true
+                }
+            }
+
+            if(check == false) {
+                workspace.parentElement.parentElement.parentElement.classList.add('display')
+            }
+            else {
+                workspace.parentElement.parentElement.parentElement.classList.remove('display')
+            }
+            
+        }
+    }
+})
+
+search.addEventListener('focusout', () => {
+    search.value = ''
+    let navEls = document.getElementsByClassName('nav-el')
+    for(let el of navEls) {
+        el.classList.remove('display')
+    } 
+})
+
