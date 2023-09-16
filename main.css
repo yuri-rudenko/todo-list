@@ -560,3 +560,68 @@ main .todo-list .add-board .deleter p {
     background-color: #007CFF;
     color: white;
 }
+
+
+.wrapper .pop-up-assign {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .cross-small-assign {
+    box-sizing: content-box;
+    height: 24px;
+    position: relative;
+    left: 750px;
+    top: 15px;
+    background-color: #007CFF;
+    border-radius: 50%;
+    padding: 5px;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    backdrop-filter: blur(6px);
+    margin-top: -250px;
+    margin-left: -400px;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .content {
+    display: flex;
+    justify-content: space-between;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign, .right-assign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    min-height: 420px;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign {
+    border-right: 2px solid #007CFF;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign .images, .right-assign .images {
+    padding-top: 20px;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign p, .right-assign p {
+    font-size: 24px;
+    border-bottom: 2px solid lightgray;
+    width: 250px;
+    font-family: Belbo-semibold;
+    color: #3b3b3b;
+    text-align: center;
+}
+.wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign img, .right-assign img {
+    height: 76px;
+    border-radius: 50%;
+    margin: 5px;
+}

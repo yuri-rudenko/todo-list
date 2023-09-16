@@ -157,6 +157,9 @@ class Workspace {
             text.classList.add(fontFromLower)
             
             undrawWorkspace()
+            
+
+            setProfilePicturePostion()
 
             this.drawWorkspace()
         })
@@ -230,6 +233,8 @@ class Workspace {
                 this.boards.push(new Board('New board', [], '007CFF'))
             }
         })
+
+        setProfilePicturePostion()
     }
 }
 
@@ -726,8 +731,9 @@ class Task {
 
         let taskDiv = document.createElement('div')
         taskDiv.classList.add('task')
-        taskDiv.draggable = false
-        taskDiv.insertAdjacentHTML('beforeend',`<img src="icons/lock.png" class="lock" alt="">`)
+        taskDiv.draggable = true
+        
+        taskDiv.insertAdjacentHTML('beforeend',`<img src="icons/unlock.png" class="lock" alt="">`)
 
         let taskTop = document.createElement('div')
         taskTop.classList.add("task-top")
@@ -911,7 +917,6 @@ submit[0].addEventListener('click', () => {
 let workspace = document.querySelector('.workspaces')
 let createSpace = document.querySelector('.create')
 
-
 createSpace.addEventListener('click', makeNewSpaceVisible)
 
 let tasks = document.querySelectorAll('.task')
@@ -919,5 +924,14 @@ let containers = document.querySelectorAll('.tasks')
 
 draggingTasks(tasks, containers)
 
-setProfilePicturePostion(document.querySelectorAll('.profile-picture'))
+setProfilePicturePostion()
 
+let assignedCross = document.getElementsByClassName('cross-small-assign')[0]
+let assign = document.getElementsByClassName('pop-up-assign')[0]
+assignedCross.addEventListener('click', () => {
+    assign.classList.add('display')
+})
+let add = document.querySelector('.add')
+add.addEventListener('click', () => {
+    assign.classList.remove('display')
+})
