@@ -36,6 +36,7 @@ const main = {
         {src: './img/profile-pictures/11.jpg', num: 11},
         {src: './img/profile-pictures/12.jpg', num: 12},
         {src: './img/profile-pictures/13.jpg', num: 13},
+        {src: './img/profile-pictures/14.jpg', num: 14}
     ],
 
 }
@@ -49,6 +50,7 @@ class Workspace {
         this.boards = boards
         this.tags = []
         this.color = color
+        this.date = "Enter date"
         this.addNav()
     }
 
@@ -167,14 +169,84 @@ class Workspace {
     }
 
     drawWorkspace() {
-        let name = document.querySelector('.description .name p')
+        let name = document.createElement('p')
         name.innerHTML = this.name
 
-        let logo = document.querySelector('.description .name img')
+        name.addEventListener('dblclick', (ev) => {
+                    let old = ev.target.innerHTML
+                    let input = document.createElement('input')
+                    input.type = 'text'
+                    input.classList.add('task-name')
+                    input.innerHTML = ev.target.innerHTML
+            
+                    let inputStyle = getComputedStyle(ev.target)
+                    input.style.width = `${parseInt(inputStyle.width)+50}px`
+                    input.value = `${ev.target.innerHTML}`
+            
+                    ev.target.classList.add('display')
+        
+                    ev.target.before(input)
+        
+                    input.focus()
+            
+                    input.addEventListener('focusout', () => {
+                        let newVal = input.value
+                        input.remove()
+                        if(newVal) ev.target.innerHTML = newVal
+                        else ev.target.innerHTML = "Enter name"
+                        this.name = `${ev.target.innerHTML}`
+                        ev.target.classList.remove('display')
+
+                        let lefters = document.getElementsByClassName('workspace-name')
+                        for(let left of lefters) {
+                            if(left.innerHTML == old) {
+                                left.innerHTML = ev.target.innerHTML
+                            }
+                        }  
+                    })
+        })
+
+        let logo = document.createElement('img')
         logo.src = `icons/figures/figure${this.color}.png`
 
-        let description = document.querySelector('.description .work-description p')
-        description.innerHTML = this.description
+        let description = document.createElement('div')
+        description.classList.add('work-description')
+        description.insertAdjacentHTML('beforeend', `<p>${this.description}</p>`)
+
+        description.addEventListener('dblclick', (ev) => {
+            let input = document.createElement('textarea')
+            input.classList.add('task-name')
+            input.innerHTML = ev.target.innerHTML
+    
+            let inputStyle = getComputedStyle(ev.target)
+            input.style.width = `${parseInt(inputStyle.width)+100}px`
+            input.value = `${ev.target.innerHTML}`
+    
+            ev.target.classList.add('display')
+
+            ev.target.before(input)
+
+            input.focus()
+    
+            input.addEventListener('focusout', () => {
+                let newVal = input.value
+                input.remove()
+                if(newVal) ev.target.innerHTML = newVal
+                else ev.target.innerHTML = "Enter description"
+                this.description = `${ev.target.innerHTML}`
+                ev.target.classList.remove('display')
+            })
+})
+
+        let nameCont = document.createElement('div')
+        nameCont.classList.add('name')
+        nameCont.append(logo)
+        nameCont.append(name)
+
+        let descriptionCont = document.querySelector('.work-info .description')
+
+        descriptionCont.append(nameCont)
+        descriptionCont.append(description)
 
         let todoList = document.querySelector('.todo-list')
 
@@ -185,6 +257,42 @@ class Workspace {
         for(let pfp of this.assigned) {
             imagesContainer.insertAdjacentHTML('beforeend', `<img src="${pfp.src}" alt="" class="profile-picture"></img>`)
         }
+
+        let date = document.querySelector('.date')
+        date.insertAdjacentHTML('beforeend', `<p>Date:</p>`)
+        let dateEl = document.createElement('div')
+        dateEl.classList.add('date-el')
+        dateEl.innerHTML = this.date
+
+        dateEl.addEventListener('dblclick', (ev) => {
+
+            let input = document.createElement('input')
+                input.type = 'date'
+                input.classList.add('day')
+                
+                input.value = `${ev.target.innerHTML}`
+        
+                let inputStyle = getComputedStyle(ev.target)
+                input.style.width = `${parseInt(inputStyle.width)+50}px`
+        
+                ev.target.classList.add('display')
+    
+                ev.target.before(input)
+    
+                input.focus()
+        
+                input.addEventListener('focusout', () => {
+                    let newVal = input.value
+                    input.remove()
+                    if(newVal) ev.target.innerHTML = newVal
+                    else ev.target.innerHTML = "Enter day"
+                    this.date = `${ev.target.innerHTML}`
+                    ev.target.classList.remove('display')
+                })
+        })
+                
+
+        date.append(dateEl)
 
         let adder = document.createElement('div')
         adder.classList.add('adder','board-creator')
@@ -261,7 +369,6 @@ class Workspace {
 
                 notAssigned.insertAdjacentHTML('beforeend', `<img class="person-pfp" src="${ev.target.src}" alt="pfp">`)
                 ev.target.remove()
-                console.log('removed ', ev.target.dataset.number)
             }
         })
 
@@ -273,7 +380,6 @@ class Workspace {
                     num: `${ev.target.dataset.number}`
                 })
                 ev.target.remove()
-                console.log('added ', ev.target.dataset.number)
             }
         })
 
@@ -721,7 +827,6 @@ class Task {
                     input.classList.add('day')
                     
                     input.value = `2023-${ev.target.innerHTML}`
-                    console.log(input.value)
             
                     let inputStyle = getComputedStyle(ev.target)
                     input.style.width = `${parseInt(inputStyle.width)+50}px`

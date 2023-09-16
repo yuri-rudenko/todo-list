@@ -49,10 +49,19 @@ img {
     flex-direction: column;
     justify-content: space-between;
 }
+.wrapper nav .nav-top .profile-picture img {
+    position: relative;
+    right: 10px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 2px solid grey;
+    margin-bottom: 10px;
+}
 .wrapper nav .search {
     display: flex;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .wrapper nav .search .lens {
     width: 24px;
@@ -199,6 +208,13 @@ img {
     display: flex;
     align-items: center;
 }
+.wrapper main .top .work-info .description .name input {
+    font-family: Belbo-bold;
+    color: white;
+    font-size: 24px;
+    background: none;
+    backdrop-filter: blur(500px);
+}
 .wrapper main .top .work-info .description .name img {
     margin-right: 10px;
     height: 24px;
@@ -212,6 +228,14 @@ img {
 .wrapper main .top .work-info .description .work-description p {
     font-size: 16px;
     color: #888888;
+}
+.wrapper main .top .work-info .description .work-description textarea {
+    font-size: 16px;
+    color: #888888;
+    background: none;
+    backdrop-filter: blur(500px);
+    max-height: 200px;
+    max-width: 1000px;
 }
 .wrapper main .top .work-info .details {
     padding-top: 20px;
@@ -231,7 +255,6 @@ img {
     display: flex;
 }
 .wrapper main .top .work-info .details .assign .images .images-container {
-    border-right: 1px solid #5a4ff1;
     display: flex;
     margin: 0px 5px 0px 0px;
 }
@@ -241,6 +264,11 @@ img {
     border-radius: 50%;
     border: 2px solid white;
     position: relative;
+} 
+.wrapper main .top .work-info .details .assign .add-container {
+    position: relative;
+    padding-left: 5px;
+    border-left: 1px solid #5a4ff1;
 }
 .wrapper main .top .work-info .details .assign .add {
     width: 50px;
@@ -270,6 +298,11 @@ img {
     margin-right: 10px;
     font-size: 18px;
     color: #999999;
+}
+.wrapper main .top .work-info .details .date input {
+    margin-right: 10px;
+    font-size: 16px;
+    max-height: 22px;
 }
 .wrapper main .top .work-info .details .date .date-el {
     color: white;
@@ -600,7 +633,7 @@ main .todo-list .add-board .deleter p {
 .wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign, .right-assign {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
@@ -611,6 +644,7 @@ main .todo-list .add-board .deleter p {
 }
 .wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign .images, .right-assign .images {
     padding-top: 20px;
+
 }
 .wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign p, .right-assign p {
     font-size: 24px;

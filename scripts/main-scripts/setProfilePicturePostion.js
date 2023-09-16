@@ -1,8 +1,13 @@
 export function setProfilePicturePostion() {
     let pps = document.querySelectorAll('.profile-picture')
-    let left = -15
+    let add = document.querySelector('.details .assign .add-container')
+    let absolute = -15
+    if(pps.length > 5) absolute -=5
+    if(pps.length > 10) absolute -=2
+    let left = absolute
     for(let el of pps) {
         el.style.right = left + 'px'
-        left += 15
+        left -= absolute
     };
+    add.style.right = left-25 + 'px'
 }

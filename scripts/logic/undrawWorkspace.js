@@ -10,4 +10,6 @@ export function undrawWorkspace() {
     let rightAssign = document.getElementsByClassName('right-assign')[0]
     leftAssign.innerHTML = '<p>Assigned people</p>'
     rightAssign.innerHTML = '<p>Add people</p>'
+    document.querySelector('.work-info .description').innerHTML = ''
+    document.querySelector('.date').innerHTML = ''
 }
