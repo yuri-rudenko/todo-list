@@ -86,6 +86,7 @@ img {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 .wrapper nav .workspaces .nav-el .upper img {
     width: 20px;
@@ -161,6 +162,8 @@ img {
     color: #007CFF;
     border-radius: 20px;
     margin-bottom: 15px;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .wrapper nav .create .plus {
@@ -269,6 +272,10 @@ img {
     position: relative;
     padding-left: 5px;
     border-left: 1px solid #5a4ff1;
+    cursor: pointer;
+}
+.wrapper main .top .work-info .details .assign .add-container .add {
+    transition: 0.3s;
 }
 .wrapper main .top .work-info .details .assign .add {
     width: 50px;
@@ -345,6 +352,12 @@ img {
     margin-right: 60px;
     color: #999999;
     font-size: 20px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+.wrapper main .top .options .options-el:first-child {
+    color: white;
+    border-bottom: 3px solid white;
 }
 
 .b8000AB {
@@ -404,6 +417,8 @@ main .todo-list .board .adder {
     padding: 0px 20px;
     border-radius: 10px;
     margin-bottom: 20px;
+    transition: 0.3s;
+    cursor: pointer;
 }
 main .todo-list .board .adder .plus {
     font-family: belbo-light;
@@ -485,6 +500,9 @@ main .todo-list .add-board .adder {
     border-radius: 10px;
     font-family: belbo-semibold;
     height: 54px;
+    cursor: pointer;
+    padding: 0px 10px;
+    transition: 0.3s;
 }
 main .todo-list .add-board .adder .plus {
     font-family: belbo-light;

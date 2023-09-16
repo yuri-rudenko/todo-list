@@ -1084,6 +1084,18 @@ colorCounter++
 let submit = document.getElementsByClassName('submit-new-workspace')
 submit[0].addEventListener('click', () => {
     colorCounter = createNewWorkspace(colors, colorCounter, Board, Workspace, main)
+    let pop = document.getElementsByClassName('pop-up-workspace')
+    let subthemes = document.getElementsByClassName('subtheme')
+    let name = document.querySelector('.create-workspace .name')
+    if(submit.value) {
+        for(let sub of subthemes) {
+            sub.value = ''
+        }
+        name.value = ''
+        subthemes[1].classList.add('display')
+        subthemes[2].classList.add('display')
+        pop[0].classList.add('display')
+    }
 })
 
 let workspace = document.querySelector('.workspaces')

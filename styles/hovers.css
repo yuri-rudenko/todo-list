@@ -1,0 +1,13 @@
+.wrapper nav .create:hover {
+    background-color: #007CFF;
+    color: rgb(225, 236, 254);
+}
+main .todo-list .board .adder:hover {
+    background-color: #dbdbdb;
+}
+.wrapper main .top .work-info .details .assign .add-container .add:hover {
+    background-color: #c0bbff;
+}
+main .todo-list .add-board .adder:hover {
+    background-color: rgb(195, 255, 199);
+}

@@ -20,7 +20,6 @@ export function makeNewSpaceVisible() {
 
     name.focus()
     
-    
     document.addEventListener('keypress', () => {
         if(subthemes[0].value) {
             subthemes[1].classList.remove('display')
