@@ -23,19 +23,19 @@ const main = {
     activeWorkspace: 0,
     files: [],
     people: [
-        './img/profile-pictures/1.jpg',
-        './img/profile-pictures/2.jpg',
-        './img/profile-pictures/3.jpg',
-        './img/profile-pictures/4.jpg',
-        './img/profile-pictures/5.jpg',
-        './img/profile-pictures/6.jpg',
-        './img/profile-pictures/7.png',
-        './img/profile-pictures/8.jpg',
-        './img/profile-pictures/9.jpg',
-        './img/profile-pictures/10.jpg',
-        './img/profile-pictures/11.jpg',
-        './img/profile-pictures/12.jpg',
-        './img/profile-pictures/13.jpg',
+        {src: './img/profile-pictures/1.jpg', num: 1},
+        {src: './img/profile-pictures/2.jpg', num: 2},
+        {src: './img/profile-pictures/3.jpg', num: 3},
+        {src: './img/profile-pictures/4.jpg', num: 4},
+        {src: './img/profile-pictures/5.jpg', num: 5},
+        {src: './img/profile-pictures/6.jpg', num: 6},
+        {src: './img/profile-pictures/7.png', num: 7},
+        {src: './img/profile-pictures/8.jpg', num: 8},
+        {src: './img/profile-pictures/9.jpg', num: 9},
+        {src: './img/profile-pictures/10.jpg', num: 10},
+        {src: './img/profile-pictures/11.jpg', num: 11},
+        {src: './img/profile-pictures/12.jpg', num: 12},
+        {src: './img/profile-pictures/13.jpg', num: 13},
     ],
 
 }
@@ -45,7 +45,7 @@ class Workspace {
         this.name = name
         this.subthemes = subthemes
         this.description = "New workspace. You can change the description in the settings tab"
-        this.assigned = [main.people[1], main.people[5], main.people[6]]
+        this.assigned = []
         this.boards = boards
         this.tags = []
         this.color = color
@@ -158,7 +158,6 @@ class Workspace {
             
             undrawWorkspace()
             
-
             setProfilePicturePostion()
 
             this.drawWorkspace()
@@ -184,7 +183,7 @@ class Workspace {
 
         let imagesContainer = document.querySelector('.images-container')
         for(let pfp of this.assigned) {
-            imagesContainer.insertAdjacentHTML('beforeend', `<img src="${pfp}" alt="" class="profile-picture"></img>`)
+            imagesContainer.insertAdjacentHTML('beforeend', `<img src="${pfp.src}" alt="" class="profile-picture"></img>`)
         }
 
         let adder = document.createElement('div')
@@ -233,6 +232,74 @@ class Workspace {
                 this.boards.push(new Board('New board', [], '007CFF'))
             }
         })
+
+        let assigned = document.createElement('div')
+        assigned.classList.add('assigned')
+        assigned.classList.add('images')
+        let notAssigned = document.createElement('div')
+        notAssigned.classList.add('notAssigned')
+        notAssigned.classList.add('images')
+        for(let pers of this.assigned) {
+            assigned.insertAdjacentHTML('beforeend', `<img class="person-pfp" data-number="${pers.num}" src="${pers.src}" alt="pfp">`)
+        }
+        for(let pers of main.people) {
+
+            let draw = true
+            for(let notInc of this.assigned) {
+                if(pers.num == notInc.num) draw = false
+            }
+            if(draw) notAssigned.insertAdjacentHTML('beforeend', `<img class="person-pfp" data-number="${pers.num}" src="${pers.src}" alt="pfp">`)
+        }
+
+        assigned.addEventListener('click', (ev) => {
+            if(ev.target.classList.contains('person-pfp')) {
+                for(let i = 0; i < this.assigned.length; i++) {
+                    if(ev.target.src == this.assigned[i].src) {
+                        this.assigned.splice(i, 1)
+                    }
+                }
+
+                notAssigned.insertAdjacentHTML('beforeend', `<img class="person-pfp" src="${ev.target.src}" alt="pfp">`)
+                ev.target.remove()
+                console.log('removed ', ev.target.dataset.number)
+            }
+        })
+
+        notAssigned.addEventListener('click', (ev) => {
+            if(ev.target.classList.contains('person-pfp')) {
+                assigned.insertAdjacentHTML('beforeend', `<img class="person-pfp" src="${ev.target.src}" alt="pfp">`)
+                this.assigned.push({
+                    src: `${ev.target.src}`,
+                    num: `${ev.target.dataset.number}`
+                })
+                ev.target.remove()
+                console.log('added ', ev.target.dataset.number)
+            }
+        })
+
+        if(document.getElementsByClassName('cross-small-assign')[0]) document.getElementsByClassName('cross-small-assign')[0].remove()
+
+        let assign = document.getElementsByClassName('pop-up-assign')[0]
+        let popUpWrapper = document.getElementsByClassName('pop-up-assign-wrapper')[0]
+        let cross = document.createElement('img')
+        cross.src = "icons/cross-small.png"
+        cross.alt = "cross-small"
+        cross.classList.add('cross-small-assign')
+        popUpWrapper.prepend(cross)
+        cross.addEventListener('click', () => {
+            assign.classList.add('display')
+            let imagesContainer = document.querySelector('.images-container')
+            imagesContainer.innerHTML = ''
+            for(let pfp of this.assigned) {
+                imagesContainer.insertAdjacentHTML('beforeend', `<img src="${pfp.src}" alt="" class="profile-picture"></img>`)
+            }
+            setProfilePicturePostion()
+        })
+
+        let leftAssign = document.getElementsByClassName('left-assign')[0]
+        let rightAssign = document.getElementsByClassName('right-assign')[0]
+        leftAssign.append(assigned)
+        rightAssign.append(notAssigned)
 
         setProfilePicturePostion()
     }
@@ -928,9 +995,7 @@ setProfilePicturePostion()
 
 let assignedCross = document.getElementsByClassName('cross-small-assign')[0]
 let assign = document.getElementsByClassName('pop-up-assign')[0]
-assignedCross.addEventListener('click', () => {
-    assign.classList.add('display')
-})
+
 let add = document.querySelector('.add')
 add.addEventListener('click', () => {
     assign.classList.remove('display')

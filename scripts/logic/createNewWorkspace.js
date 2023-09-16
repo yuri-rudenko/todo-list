@@ -23,6 +23,10 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
     }
     addBoard.remove()
     document.querySelector('.images-container').innerHTML = ''
+    let leftAssign = document.getElementsByClassName('left-assign')[0]
+    let rightAssign = document.getElementsByClassName('right-assign')[0]
+    leftAssign.innerHTML = '<p>Assigned people</p>'
+    rightAssign.innerHTML = '<p>Add people</p>'
 
     const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
     workspace.drawWorkspace() 
