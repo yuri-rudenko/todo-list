@@ -331,7 +331,6 @@ img {
     display: flex;
 }
 .wrapper main .top .work-info .details .tags .tags-el .tag {
-    width: 100%;
     color: white;
     font-family: belbo-light;
     display: flex;
@@ -345,11 +344,14 @@ img {
 
 
 .wrapper main .top .options {
-    margin: 30px 0px 10px 30px;
+    margin: 30px 0px 0px 30px;
     display: flex;
+    
 }
 .wrapper main .top .options .options-el {
-    margin-right: 60px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 30px;
     color: #999999;
     font-size: 20px;
     padding-bottom: 5px;
