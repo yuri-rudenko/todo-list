@@ -352,14 +352,12 @@ img {
     padding-right: 10px;
     padding-left: 10px;
     margin-right: 30px;
-    color: #999999;
     font-size: 20px;
     padding-bottom: 5px;
     cursor: pointer;
 }
-.wrapper main .top .options .options-el:first-child {
-    color: white;
-    border-bottom: 3px solid white;
+.options-el {
+    color: #999999;
 }
 
 .b8000AB {
@@ -384,7 +382,7 @@ img {
     background-color: #cccccc;
 }
 
-main .todo-list {
+.todo-list {
     margin-top: 40px;
     margin-left: 30px;
     display: flex;

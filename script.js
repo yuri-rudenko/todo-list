@@ -236,7 +236,7 @@ class Workspace {
                 this.description = `${ev.target.innerHTML}`
                 ev.target.classList.remove('display')
             })
-})
+        })
 
         let nameCont = document.createElement('div')
         nameCont.classList.add('name')
@@ -249,6 +249,7 @@ class Workspace {
         descriptionCont.append(description)
 
         let todoList = document.querySelector('.todo-list')
+        todoList.classList.remove('display')
 
         let addBoard = document.createElement('div')
         addBoard.classList.add('add-board')
@@ -290,9 +291,44 @@ class Workspace {
                     ev.target.classList.remove('display')
                 })
         })
-                
 
         date.append(dateEl)
+
+        // tags
+
+        let options = document.createElement('div')
+        options.classList.add('options')
+        options.insertAdjacentHTML('beforeend', `<div class="options-el active-option tasks">Tasks</div>`)
+        options.insertAdjacentHTML('beforeend', `<div class="options-el time-line">TimeLine</div>`)
+        options.insertAdjacentHTML('beforeend', `<div class="options-el files">Files</div>`)
+        options.insertAdjacentHTML('beforeend', `<div class="options-el discussion">Discussion</div>`)
+        options.insertAdjacentHTML('beforeend', `<div class="options-el settings">Settings</div>`)
+
+        let workInfo = document.querySelector('.work-info')
+
+        options.addEventListener('click', (ev) => {
+            if(ev.target.classList.contains('options-el')) {
+
+                let opEls = document.querySelectorAll('.options-el')
+                for(let el of opEls) {
+                    el.classList.remove('active-option')
+                }
+
+                ev.target.classList.add('active-option')
+
+                if(ev.target.classList.contains('settings')) {
+                    todoList.classList.add('display')
+                }
+                
+                if(ev.target.classList.contains('tasks')) {
+                    todoList.classList.remove('display')
+                }
+
+            }
+        })
+
+        workInfo.after(options)
+
 
         let adder = document.createElement('div')
         adder.classList.add('adder','board-creator')

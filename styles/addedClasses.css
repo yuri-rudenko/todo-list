@@ -40,3 +40,8 @@
 .wrapper .pop-up-workspace .pop-up-workspace-wrapper .create-workspace .name.small-length {
     border-color: red;
 }
+
+.active-option {
+    color: white;
+    border-bottom: 3px solid white;
+}

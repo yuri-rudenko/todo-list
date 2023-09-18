@@ -12,4 +12,5 @@ export function undrawWorkspace() {
     rightAssign.innerHTML = '<p>Add people</p>'
     document.querySelector('.work-info .description').innerHTML = ''
     document.querySelector('.date').innerHTML = ''
+    document.querySelector('.options').remove()
 }

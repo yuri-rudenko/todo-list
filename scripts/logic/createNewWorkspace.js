@@ -29,6 +29,7 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
     rightAssign.innerHTML = '<p>Add people</p>'
     document.querySelector('.work-info .description').innerHTML = ''
     document.querySelector('.date').innerHTML = ''
+    document.querySelector('.options').remove()
 
     const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
     workspace.drawWorkspace() 
