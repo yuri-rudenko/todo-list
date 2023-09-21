@@ -677,3 +677,110 @@ main .todo-list .add-board .deleter p {
     border-radius: 50%;
     margin: 5px;
 }
+
+
+.wrapper .settings p {
+    font-family: belbo-semibold;
+    font-size: 24px;
+    color: #007CFF;
+}
+.wrapper .settings .settings-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.wrapper .settings .settings-wrapper div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.wrapper .settings .settings-wrapper div p {
+    margin-bottom: 30px;
+}
+.wrapper .settings .settings-wrapper .name-change {
+    
+}
+.wrapper .settings .settings-wrapper .name-change p, input {
+    max-width: 400px;
+}
+.wrapper .settings .settings-wrapper .name-change input {
+    font-size: 22px;
+}
+.wrapper .settings .settings-wrapper .description-change {
+    max-width: 400px;
+}
+.wrapper .settings .settings-wrapper .description-change textarea {
+    max-width: 100%;
+    max-height: 400px;
+    min-height: 40px;
+    font-size: 22px;
+}
+.wrapper .settings .settings-wrapper .edit-tags .add-tag {
+    margin-left: 0px;
+}
+.wrapper .settings .settings-wrapper .edit-tags .add-tag input {
+    font-size: 22px;
+}
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags {
+    margin-left: 0px;
+}
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags div {
+    margin-left: 0px;
+}
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags .tag .delete-tag {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+    border: 2px rgb(207, 207, 207) solid;
+    padding: 5px;
+    border-radius: 10px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags .tag .delete-tag p, .delete-tag div {
+    margin: 0;
+    color: #888888;
+    font-family: belbo;
+    font-size: 22px;
+}
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags .tag .delete-tag .delete-tag-button {
+    padding-left: 50px;
+    margin-bottom: 0;
+}
+
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags .tag .delete-tag .delete-tag-button p{
+    background-color: rgb(255, 207, 207);
+    color: rgb(255, 36, 36);
+    padding: 0px 8px;
+    border-radius: 50%;
+}
+
+.wrapper .settings .settings-wrapper .remove-boards div {
+    margin: 0;
+}
+.wrapper .settings .settings-wrapper .remove-boards .visible-boards .board-checkbox {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.wrapper .settings .settings-wrapper .remove-boards .visible-boards .board-checkbox p {
+    margin: 0;
+    margin-left: 10px;
+    color: black;
+}
+
+.settings .submit-settings {
+    color: green;
+    background-color: lightgreen;
+    border-radius: 10px;
+    border: none;
+    height: 50px;
+    font-family: belbo-bold;
+    font-size: 24px;
+    margin-left: 30px;
+    width: 300px;
+    margin-bottom: 20px;
+}
