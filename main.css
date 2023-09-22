@@ -30,6 +30,9 @@
 input {
     caret-color: grey;
 }
+textarea {
+    caret-color: grey;
+}
 
 img {
     -moz-user-select: none;
@@ -718,9 +721,25 @@ main .todo-list .add-board .deleter p {
 }
 .wrapper .settings .settings-wrapper .edit-tags .add-tag {
     margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.wrapper .settings .settings-wrapper .edit-tags .add-tag  .submit-new-tag {
+    height: 40px;
+    width: 40px;
+    margin: 0;
+    margin-left: 10px;
+    background-color: lightgreen;
+    align-items: center;
+    justify-content: center;
+    font-family: belbo-semithin;
+    border: 1px solid black;
+    font-size: 40px;
 }
 .wrapper .settings .settings-wrapper .edit-tags .add-tag input {
     font-size: 22px;
+    width: 350px;
 }
 .wrapper .settings .settings-wrapper .edit-tags .cur-tags {
     margin-left: 0px;
