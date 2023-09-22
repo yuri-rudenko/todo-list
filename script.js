@@ -43,7 +43,7 @@ const main = {
 }
 
 class Workspace {
-    constructor(name, subthemes, boards, color, tags) {
+    constructor(name, subthemes, boards, color, tags = []) {
         this.name = name
         this.subthemes = subthemes
         this.description = "New workspace. You can change the description in the settings tab"

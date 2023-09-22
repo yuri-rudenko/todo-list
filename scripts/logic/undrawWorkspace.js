@@ -13,4 +13,9 @@ export function undrawWorkspace() {
     document.querySelector('.work-info .description').innerHTML = ''
     document.querySelector('.date').innerHTML = ''
     document.querySelector('.options').remove()
+    document.querySelector('.tags-el').innerHTML = ''
+
+    if(document.getElementsByClassName('settings')[0]) document.getElementsByClassName('settings')[0].remove
+
+
 }

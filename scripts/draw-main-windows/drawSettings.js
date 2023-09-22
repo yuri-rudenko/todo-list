@@ -6,10 +6,10 @@ export function drawSettings(Work) {
     let desc = settings.querySelector('.description-change textarea')
     name.value = Work.name
     desc.value = Work.description
+    console.log(desc.value, [], Work.description)
 
     let tags = settings.querySelector('.cur-tags')
     settings.classList.add('display')
-
     for(let tag of Work.tags) {
         let tagWrapper = document.createElement('div')
         tagWrapper.classList.add('tag')
