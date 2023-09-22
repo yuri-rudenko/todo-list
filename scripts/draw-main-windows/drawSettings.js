@@ -1,6 +1,44 @@
-export function drawSettings(work) {
-    let template = document.querySelector("#settings-template").cloneNode(true)
-    // let text = template.querySelector('.name-change input')
-    //let desc = template.querySelector('description-change textarea')
-    console.log(template)
+export function drawSettings(Work) {
+    let template = document.querySelector('#settings-template')
+    const settings = document.importNode(template.content, true).querySelector('.settings')
+
+    let name = settings.querySelector('.name-change input')
+    let desc = settings.querySelector('.description-change textarea')
+    name.value = Work.name
+    desc.value = Work.description
+
+    let tags = settings.querySelector('.cur-tags')
+    settings.classList.add('display')
+
+    for(let tag of Work.tags) {
+        let tagWrapper = document.createElement('div')
+        tagWrapper.classList.add('tag')
+
+        let tagDel = document.createElement('div')
+        tagDel.classList.add('delete-tag')
+
+        tagDel.insertAdjacentHTML('beforeend', `<p>${tag}</p>`)
+        tagDel.insertAdjacentHTML('beforeend', `<div class="delete-tag-button"><p>×</p></div>`)
+
+        tagWrapper.append(tagDel)
+
+        tags.append(tagWrapper)
+    }
+
+    let boards = settings.querySelector('.remove-boards .visible-boards')
+
+    for(let board of Work.boards) {
+        let boardEl = document.createElement('label')
+        boardEl.classList.add('board-checkbox')
+        boardEl.insertAdjacentHTML('beforeend', `<input type="checkbox">`)
+        boardEl.insertAdjacentHTML('beforeend', `<p>${board.name}</p>`)
+
+        if(board.visible) {
+            boardEl.querySelector('input').checked = true
+        }
+
+        boards.append(boardEl)
+    }
+    
+    document.querySelector('#settings-template').before(settings)
 }

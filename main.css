@@ -670,7 +670,6 @@ main .todo-list .add-board .deleter p {
 .wrapper .pop-up-assign .pop-up-assign-wrapper .left-assign p, .right-assign p {
     font-size: 24px;
     border-bottom: 2px solid lightgray;
-    width: 250px;
     font-family: Belbo-semibold;
     color: #3b3b3b;
     text-align: center;
@@ -757,6 +756,7 @@ main .todo-list .add-board .deleter p {
     width: fit-content;
     display: flex;
     flex-direction: row;
+    max-width: 400px;
 }
 .wrapper .settings .settings-wrapper .edit-tags .cur-tags .tag .delete-tag p, .delete-tag div {
     margin: 0;

@@ -43,13 +43,13 @@ const main = {
 }
 
 class Workspace {
-    constructor(name, subthemes, boards, color) {
+    constructor(name, subthemes, boards, color, tags) {
         this.name = name
         this.subthemes = subthemes
         this.description = "New workspace. You can change the description in the settings tab"
         this.assigned = []
         this.boards = boards
-        this.tags = []
+        this.tags = tags
         this.color = color
         this.date = "Enter date"
         this.addNav()
@@ -170,6 +170,9 @@ class Workspace {
     }
 
     drawWorkspace() {
+
+        drawSettings(this)
+
         let name = document.createElement('p')
         name.innerHTML = this.name
 
@@ -307,6 +310,8 @@ class Workspace {
 
         let workInfo = document.querySelector('.work-info')
 
+        let settings = document.getElementsByClassName('settings')[0]
+
         options.addEventListener('click', (ev) => {
             if(ev.target.classList.contains('options-el')) {
 
@@ -318,10 +323,12 @@ class Workspace {
                 ev.target.classList.add('active-option')
 
                 if(ev.target.classList.contains('settings')) {
+                    settings.classList.remove('display')
                     todoList.classList.add('display')
                 }
                 
                 if(ev.target.classList.contains('tasks')) {
+                    settings.classList.add('display')
                     todoList.classList.remove('display')
                 }
 
@@ -396,6 +403,11 @@ class Workspace {
             if(draw) notAssigned.insertAdjacentHTML('beforeend', `<img class="person-pfp" data-number="${pers.num}" src="${pers.src}" alt="pfp">`)
         }
 
+        let tags = document.querySelector(".tags-el")
+        for(let tag of this.tags) {
+            tags.insertAdjacentHTML('beforeend', `<div class="tag">${tag}</div>`)
+        }
+
         assigned.addEventListener('click', (ev) => {
             if(ev.target.classList.contains('person-pfp')) {
                 for(let i = 0; i < this.assigned.length; i++) {
@@ -445,8 +457,6 @@ class Workspace {
         rightAssign.append(notAssigned)
 
         setProfilePicturePostion()
-
-        drawSettings(this)
     }
 }
 
@@ -455,6 +465,7 @@ class Board {
         this.name = name
         this.tasks = tasks
         this.color = color
+        this.visible = true
         this.addBoard()
     }
 
@@ -1110,7 +1121,7 @@ class Task {
 }
 
 let basicBoards = [new Board('Todos', [], '007CFF'), new Board('In Progress', [], 'cccccc'),new Board('Is Done', [], `20A475`)]
-let newWorkspace = new Workspace('New Workspace', ['Testing', 'Showcase'], basicBoards, colors[colorCounter])
+let newWorkspace = new Workspace('New Workspace', ['Testing', 'Showcase'], basicBoards, colors[colorCounter], ["Go settings", "To change"])
 
 document.querySelector('.workspace-name').classList.add('f007CFF')
 document.querySelector('.lower').classList.add('visible')
