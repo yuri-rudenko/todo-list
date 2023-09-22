@@ -773,6 +773,7 @@ main .todo-list .add-board .deleter p {
 }
 
 .settings .submit-settings {
+    margin-top: 50px;
     color: green;
     background-color: lightgreen;
     border-radius: 10px;

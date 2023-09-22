@@ -7,6 +7,7 @@ import { createNewWorkspace } from "./scripts/logic/createNewWorkspace.js"
 import { getDragAfterElement } from "./scripts/main-scripts/draggingTasks.js"
 import { rgbHex } from "./scripts/logic/rgbHex.js"
 import { undrawWorkspace } from "./scripts/logic/undrawWorkspace.js"
+import { drawSettings } from "./scripts/draw-main-windows/drawSettings.js"
 
 let colors = [
     '007CFF',
@@ -444,6 +445,8 @@ class Workspace {
         rightAssign.append(notAssigned)
 
         setProfilePicturePostion()
+
+        drawSettings(this)
     }
 }
 

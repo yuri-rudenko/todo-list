@@ -94,54 +94,56 @@
 
             </div>
 
-            <div class="settings display">
-                <div class="settings-wrapper">
-                    <div class="name-change">
-                        <p>Change the name of the workspace</p>
-                        <input type="text">
-                    </div>
-                    <div class="description-change">
-                        <p>Change the description</p>
-                        <textarea name="" id="" cols="10" rows="4"></textarea>
-                    </div>
-                    <div class="edit-tags">
-                        <p>Add tag</p>
-                        <div class="add-tag">
+            <template id="settings-template">
+                <div class="settings">
+                    <div class="settings-wrapper">
+                        <div class="name-change">
+                            <p>Change the name of the workspace</p>
                             <input type="text">
-                            <div class="submit-new-tag"></div>
                         </div>
-                        <p>Delete tags</p>
-                        <div class="cur-tags">
-                            <div class="tag">
-                                <div class="tag-name">
-                                    
-                                </div>
-                                <div class="delete-tag">
-                                    <p>Aplha0.1</p>
-                                    <div class="delete-tag-button">
-                                        <p>×</p>
+                        <div class="description-change">
+                            <p>Change the description</p>
+                            <textarea name="" id="" cols="10" rows="4"></textarea>
+                        </div>
+                        <div class="edit-tags">
+                            <p>Add tag</p>
+                            <div class="add-tag">
+                                <input type="text">
+                                <div class="submit-new-tag"></div>
+                            </div>
+                            <p>Delete tags</p>
+                            <div class="cur-tags">
+                                <div class="tag">
+                                    <div class="tag-name">
+                                        
+                                    </div>
+                                    <div class="delete-tag">
+                                        <p>Aplha0.1</p>
+                                        <div class="delete-tag-button">
+                                            <p>×</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="remove-boards">
+                            <p>Visible boards</p>
+                            <form action="" class="visible-boards">
+                                <label class="board-checkbox">
+                                    <input type="checkbox">
+                                    <p>Todos</p>
+                                </label>
+                                <label class="board-checkbox">
+                                    <input type="checkbox">
+                                    <p>In Progress</p>
+                                </label>
+                            </form>
+                        </div>
                     </div>
-                    <div class="remove-boards">
-                        <p>Visible boards</p>
-                        <form action="" class="visible-boards">
-                            <div class="board-checkbox">
-                                <input type="checkbox">
-                                <p>Todos</p>
-                            </div>
-                            <div class="board-checkbox">
-                                <input type="checkbox">
-                                <p>In Progress</p>
-                            </div>
-                        </form>
-                    </div>
+                    <button class="submit-settings">Submit</button>
                 </div>
-                <button class="submit-settings">Submit</button>
-            </div>
-        </main>
+            </main>
+        </template>
 
         <div class="pop-up-workspace display">
             <div class="pop-up-workspace-wrapper">
