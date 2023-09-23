@@ -32,7 +32,14 @@ export function createNewWorkspace(colors, colorCounter, Board, Workspace, main)
     document.querySelector('.options').remove()
     document.querySelector('.tags-el').innerHTML = ''
     
-    if(document.getElementsByClassName('settings')[0]) document.getElementsByClassName('settings')[0].remove
+    let settings = document.getElementsByClassName('settings')
+
+    if(settings) {
+        for(let sett of settings) {
+            sett.remove()
+        }
+        
+    }
 
     const workspace = new Workspace(name.value, resSubthemes, basicBoards, colors[colorCounter])
     workspace.drawWorkspace() 

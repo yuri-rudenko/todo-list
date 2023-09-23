@@ -244,6 +244,7 @@ img {
     max-width: 1000px;
 }
 .wrapper main .top .work-info .details {
+    margin-right: 40px;
     padding-top: 20px;
 }
 .wrapper main .top .work-info .details .assign {

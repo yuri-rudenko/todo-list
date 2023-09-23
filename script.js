@@ -7,7 +7,7 @@ import { createNewWorkspace } from "./scripts/logic/createNewWorkspace.js"
 import { getDragAfterElement } from "./scripts/main-scripts/draggingTasks.js"
 import { rgbHex } from "./scripts/logic/rgbHex.js"
 import { undrawWorkspace } from "./scripts/logic/undrawWorkspace.js"
-import { drawSettings } from "./scripts/draw-main-windows/drawSettings.js"
+import { drawSettings, updateSettings } from "./scripts/draw-main-windows/drawSettings.js"
 
 let colors = [
     '007CFF',
@@ -171,10 +171,10 @@ class Workspace {
 
     drawWorkspace() {
 
-        drawSettings(this)
-
         let name = document.createElement('p')
         name.innerHTML = this.name
+        
+        drawSettings(this)
 
         name.addEventListener('dblclick', (ev) => {
                     let old = ev.target.innerHTML
@@ -323,6 +323,7 @@ class Workspace {
                 ev.target.classList.add('active-option')
 
                 if(ev.target.classList.contains('settings')) {
+                    updateSettings(this)
                     settings.classList.remove('display')
                     todoList.classList.add('display')
                 }
