@@ -65,6 +65,38 @@ export function drawSettings(Work) {
             ev.target.parentElement.parentElement.parentElement.remove()
         }
     })
+
+    let sumbit = settings.querySelector('.submit-settings-button')
+    sumbit.addEventListener('click', () => {
+        if(name.value) {
+            let lefters = document.getElementsByClassName('workspace-name')
+            for(let left of lefters) {
+                if(left.innerHTML == Work.name) {
+                    left.innerHTML = name.value
+                }
+            }
+
+            let bigName = document.querySelector('.description .name p')
+            bigName.innerHTML = name.value
+            Work.name = name.value
+        }
+
+        if(desc.value) {
+            Work.description = desc.value
+            let description = document.querySelector('.work-description p')
+            description.innerHTML = Work.description
+        }
+
+        Work.tags = []
+        let topTags = document.querySelector('.tags-el')
+        topTags.innerHTML = ''
+        for(let tag of settings.querySelectorAll('.tag')) {
+            let tagText = tag.querySelector('.delete-tag p').innerHTML
+            Work.tags.push(tagText)
+            topTags.insertAdjacentHTML('beforeend', `<div class="tag">${tagText}</div>`)
+        }
+        console.log(Work.tags)
+    })
     
 }
 // <div class="delete-tag"></div>

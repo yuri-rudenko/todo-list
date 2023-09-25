@@ -794,6 +794,10 @@ main .todo-list .add-board .deleter p {
 
 .settings .submit-settings {
     margin-top: 50px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.settings .submit-settings .submit-settings-button {
     color: green;
     background-color: lightgreen;
     border-radius: 10px;
@@ -801,7 +805,5 @@ main .todo-list .add-board .deleter p {
     height: 50px;
     font-family: belbo-bold;
     font-size: 24px;
-    margin-left: 30px;
     width: 300px;
-    margin-bottom: 20px;
 }
