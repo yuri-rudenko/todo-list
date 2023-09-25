@@ -618,6 +618,8 @@ class Board {
     drawBoard() {
         let board = document.createElement('div')
         board.classList.add('board')
+        if(!this.visible) board.classList.add('display')
+        else board.classList.remove('display')
 
         let naming = document.createElement('div')
         naming.classList.add('naming')

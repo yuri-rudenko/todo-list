@@ -96,6 +96,26 @@ export function drawSettings(Work) {
             topTags.insertAdjacentHTML('beforeend', `<div class="tag">${tagText}</div>`)
         }
         console.log(Work.tags)
+
+        let boxes = document.querySelectorAll('.board-checkbox input')
+        let boards = document.querySelectorAll('.todo-list .board')
+        let i = 0
+        for(let box of boxes) {
+            if(!box.checked) {
+                Work.boards[i].visible = false
+                boards[i].classList.add('display')
+            }
+            else {
+                Work.boards[i].visible = true
+                boards[i].classList.remove('display')
+            }
+            i++
+        }
+
+        settings.classList.add('display')
+        document.querySelector('.todo-list').classList.remove('display')
+        document.querySelector('.options .settings').classList.remove('active-option')
+        document.querySelector('.options .tasks').classList.add('active-option')
     })
     
 }
