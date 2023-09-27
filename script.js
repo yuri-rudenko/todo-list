@@ -176,71 +176,12 @@ class Workspace {
         
         drawSettings(this)
 
-        name.addEventListener('dblclick', (ev) => {
-                    let old = ev.target.innerHTML
-                    let input = document.createElement('input')
-                    input.type = 'text'
-                    input.classList.add('task-name')
-                    input.innerHTML = ev.target.innerHTML
-            
-                    let inputStyle = getComputedStyle(ev.target)
-                    input.style.width = `${parseInt(inputStyle.width)+50}px`
-                    input.value = `${ev.target.innerHTML}`
-            
-                    ev.target.classList.add('display')
-        
-                    ev.target.before(input)
-        
-                    input.focus()
-            
-                    input.addEventListener('focusout', () => {
-                        let newVal = input.value
-                        input.remove()
-                        if(newVal) ev.target.innerHTML = newVal
-                        else ev.target.innerHTML = "Enter name"
-                        this.name = `${ev.target.innerHTML}`
-                        ev.target.classList.remove('display')
-
-                        let lefters = document.getElementsByClassName('workspace-name')
-                        for(let left of lefters) {
-                            if(left.innerHTML == old) {
-                                left.innerHTML = ev.target.innerHTML
-                            }
-                        }  
-                    })
-        })
-
         let logo = document.createElement('img')
         logo.src = `icons/figures/figure${this.color}.png`
 
         let description = document.createElement('div')
         description.classList.add('work-description')
         description.insertAdjacentHTML('beforeend', `<p>${this.description}</p>`)
-
-        description.addEventListener('dblclick', (ev) => {
-            let input = document.createElement('textarea')
-            input.classList.add('task-name')
-            input.innerHTML = ev.target.innerHTML
-    
-            let inputStyle = getComputedStyle(ev.target)
-            input.style.width = `${parseInt(inputStyle.width)+100}px`
-            input.value = `${ev.target.innerHTML}`
-    
-            ev.target.classList.add('display')
-
-            ev.target.before(input)
-
-            input.focus()
-    
-            input.addEventListener('focusout', () => {
-                let newVal = input.value
-                input.remove()
-                if(newVal) ev.target.innerHTML = newVal
-                else ev.target.innerHTML = "Enter description"
-                this.description = `${ev.target.innerHTML}`
-                ev.target.classList.remove('display')
-            })
-        })
 
         let nameCont = document.createElement('div')
         nameCont.classList.add('name')

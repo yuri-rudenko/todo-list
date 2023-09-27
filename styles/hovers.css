@@ -11,3 +11,15 @@ main .todo-list .board .adder:hover {
 main .todo-list .add-board .adder:hover {
     background-color: rgb(195, 255, 199);
 }
+
+.wrapper .settings .settings-wrapper .edit-tags .add-tag  .submit-new-tag:hover {
+    background-color: rgb(83, 175, 83);
+    color: black;
+}
+
+.wrapper .settings .settings-wrapper .edit-tags .cur-tags .tag .delete-tag .delete-tag-button p:hover{
+    background-color: rgb(255, 36, 36);
+    color: rgb(255, 207, 207);
+    padding: 0px 8px;
+    border-radius: 50%;
+}
